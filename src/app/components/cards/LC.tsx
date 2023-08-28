@@ -26,7 +26,7 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
                     />
                   </div>
                 </a>
-                <div className="bigor">
+                <div className="bigor" style={{height:100}}>
                   <div className="tt" style={{paddingLeft:'7px'}}>
                     <a
                       href={URL}

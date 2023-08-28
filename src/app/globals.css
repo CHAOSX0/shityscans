@@ -23,3 +23,24 @@
     text-align: left !important;
    
 }
+@media only screen and (max-width: 600px){
+    swiper-container{
+        height: 250px !important;
+    }
+	.mainslider{
+        height: 250px !important;
+    }
+}
+.mainslider{
+    height: 550px;
+}
+.mainslider .limit{
+    
+    height: 100% !important;
+}
+
+swiper-container{
+    display: block;
+    height: 550px;
+    overflow: hidden;
+}
