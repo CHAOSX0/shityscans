@@ -1,0 +1,92 @@
+<script type="text/javascript" src="https://a.omappapi.com/app/js/api.min.js" async="" id="omapi-script"></script><script src="https://aresmanga.org/wp-includes/js/wp-emoji-release.min.js?ver=6.3" defer=""></script><link rel="stylesheet" href="https://a.omappapi.com/app/js/api.min.css" id="omapi-css" media="all"></head>
+<script defer="" type="text/javascript" src="https://aresmanga.org/wp-content/cache/autoptimize/js/autoptimize_single_fd1c00317501de0c3e47277ecbe43cb4.js?ver=2.1.4" id="filter-js"></script>
+<script defer="" src="data:text/javascript;base64,KGZ1bmN0aW9uKGQpe3ZhciBzPWQuY3JlYXRlRWxlbWVudCgic2NyaXB0Iik7cy50eXBlPSJ0ZXh0L2phdmFzY3JpcHQiO3Muc3JjPSJodHRwczovL2Eub21hcHBhcGkuY29tL2FwcC9qcy9hcGkubWluLmpzIjtzLmFzeW5jPXRydWU7cy5pZD0ib21hcGktc2NyaXB0IjtkLmdldEVsZW1lbnRzQnlUYWdOYW1lKCJoZWFkIilbMF0uYXBwZW5kQ2hpbGQocyk7fSkoZG9jdW1lbnQpOw=="></script><script defer="" type="text/javascript" src="https://aresmanga.org/wp-content/cache/autoptimize/js/autoptimize_single_c52aad453777a339feb93b318999df15.js?ver=6.3" id="ts-search-js"></script>
+		<script defer="" src="data:text/javascript;base64,dmFyIG9tYXBpX2RhdGEgPSB7Im9iamVjdF9pZCI6MCwib2JqZWN0X2tleSI6IiIsIm9iamVjdF90eXBlIjoiIiwidGVybV9pZHMiOltdLCJ3cF9qc29uIjoiaHR0cHM6XC9cL2FyZXNtYW5nYS5vcmdcL3dwLWpzb24iLCJ3Y19hY3RpdmUiOmZhbHNlLCJlZGRfYWN0aXZlIjpmYWxzZSwibm9uY2UiOiJjZjg3YWY3OWRlIn07"></script>
+		<script id="tmpl-rwmb-image-item" type="text/html">
+            <input type="hidden" name="{{{ data.controller.fieldName }}}" value="{{{ data.id }}}" class="rwmb-media-input">
+            <div class="rwmb-file-icon">
+                <# if ( 'image' === data.type && data.sizes ) { #>
+                    <# if ( data.sizes[data.controller.imageSize] ) { #>
+                        <img src="{{{ data.sizes[data.controller.imageSize].url }}}">
+                    <# } else { #>
+                        <img src="{{{ data.sizes.full.url }}}">
+                    <# } #>
+                <# } else { #>
+                    <# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
+                        <img src="{{ data.image.src }}" />
+                    <# } else { #>
+                        <img src="{{ data.icon }}" />
+                    <# } #>
+                <# } #>
+            </div>
+            <div class="rwmb-image-overlay"></div>
+            <div class="rwmb-image-actions">
+                <a class="rwmb-image-edit rwmb-edit-media" title="{{{ i18nRwmbMedia.edit }}}" href="{{{ data.editLink }}}" target="_blank">
+                    <span class="dashicons dashicons-edit"></span>
+                </a>
+                <a href="#" class="rwmb-image-delete rwmb-remove-media" title="{{{ i18nRwmbMedia.remove }}}">
+                    <span class="dashicons dashicons-no-alt"></span>
+                </a>
+            </div>
+        </script>
+
+        <script id="tmpl-rwmb-media-status" type="text/html">
+            <# if ( data.maxFiles > 0 ) { #>
+                {{{ data.length }}}/{{{ data.maxFiles }}}
+                <# if ( 1 < data.maxFiles ) { #>{{{ i18nRwmbMedia.multiple }}}<# } else {#>{{{ i18nRwmbMedia.single }}}<# } #>
+            <# } #>
+        </script>
+        
+        <script id="tmpl-rwmb-media-button" type="text/html">
+            <a class="button">{{{ data.text }}}</a>
+        </script>
+        
+<script defer="" src="data:text/javascript;base64,CiAgICB2YXIgc3dpcGVyID0gbmV3IFN3aXBlcignLnN3aXBlci1jb250YWluZXInLCB7CgkgY2VudGVyZWRTbGlkZXM6IHRydWUsCiAgICAgIGF1dG9wbGF5OiB7CiAgICAgICAgZGVsYXk6IDUwMDAsCiAgICAgICAgZGlzYWJsZU9uSW50ZXJhY3Rpb246IGZhbHNlLAogICAgICB9LAoJICBsb29wOiB0cnVlLAogICAgICBwYWdpbmF0aW9uOiB7CiAgICAgICAgZWw6ICcuc3dpcGVyLXBhZ2luYXRpb24nLAoJCWNsaWNrYWJsZTogdHJ1ZSwKICAgICAgfSwKICAgIH0pOwo="></script>
+
+<script defer="" src="data:text/javascript;base64,dHNfZGFya21vZGUubGlzdGVuKCk7"></script>
+
+<script id="tmpl-rwmb-media-item" type="text/html">
+	<input type="hidden" name="{{{ data.controller.fieldName }}}" value="{{{ data.id }}}" class="rwmb-media-input">
+	<div class="rwmb-file-icon">
+		<# if ( data.sizes ) { #>
+			<# if ( data.sizes.thumbnail ) { #>
+				<img src="{{{ data.sizes.thumbnail.url }}}">
+			<# } else { #>
+				<img src="{{{ data.sizes.full.url }}}">
+			<# } #>
+		<# } else { #>
+			<# if ( data.image && data.image.src && data.image.src !== data.icon ) { #>
+				<img src="{{ data.image.src }}" />
+			<# } else { #>
+				<img src="{{ data.icon }}" />
+			<# } #>
+		<# } #>
+	</div>
+	<div class="rwmb-file-info">
+		<a href="{{{ data.url }}}" class="rwmb-file-title" target="_blank">
+			<# if( data.title ) { #>
+				{{{ data.title }}}
+			<# } else { #>
+				{{{ i18nRwmbMedia.noTitle }}}
+			<# } #>
+		</a>
+		<div class="rwmb-file-name">{{{ data.filename }}}</div>
+		<div class="rwmb-file-actions">
+			<a class="rwmb-edit-media" title="{{{ i18nRwmbMedia.edit }}}" href="{{{ data.editLink }}}" target="_blank">
+				{{{ i18nRwmbMedia.edit }}}
+			</a>
+			<a href="#" class="rwmb-remove-media" title="{{{ i18nRwmbMedia.remove }}}">
+				{{{ i18nRwmbMedia.remove }}}
+			</a>
+		</div>
+	</div>
+</script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script defer="" src="data:text/javascript;base64,dmFyIHRzX3NmX2V4Y2x1c2lvbiA9IDA7"></script>
+<script defer="" src="data:text/javascript;base64,dHNfcG9wdWxhcl93aWRnZXQucnVuKDE2OTI5NTc1MTcpOw=="></script>
+<script>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<script defer="" src="data:text/javascript;base64,dHNfZGFya21vZGUuaW5pdCgpOw=="></script>

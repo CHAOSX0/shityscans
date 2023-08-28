@@ -1,0 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url("/styles/index/lightmode.css");
+
+@import url("/styles/index/fontawsome.css");
+@import url("/styles/index/dashicons.css");

@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@import url("/styles/index/lightmode.css");
+
+@import url("/styles/index/fontawsome.css");
+@import url("/styles/index/dashicons.css");
+.swiper-wrapper{
+    transform: translateX(0) !important;
+}
+.chfiv li{
+    flex-direction: row-reverse;
+    display: flex;
+    gap: 3px;
+}
+.chfiv span{
+   font-size: xx-small; 
+}
+
+.tt{
+    text-align: left !important;
+   
+}

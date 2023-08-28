@@ -1,0 +1,27 @@
+img.wp-smiley,
+img.emoji {
+    display: inline !important;
+    border: none !important;
+    box-shadow: none !important;
+    height: 1em !important;
+    width: 1em !important;
+    margin: 0 0.07em !important;
+    vertical-align: -0.1em !important;
+    background: none !important;
+    padding: 0 !important;
+}
+.th, .serieslist.pop ul li.topone .limit .bw .ctr,.releases .vl,.scrollToTop,#sidebar #bm-history li a:hover,.hpage a,#footer .footermenu,.footer-az .az-list li a,.main-info .info-desc .spe span:before,.bxcl ul li span.dt a,.bookmark,.commentx #submit,.radiox input:checked ~ .checkmarkx,.advancedsearch button.searchz,.lightmode .nav_apb a:hover,.lista a,.lightmode .lista a:hover,.nextprev a,.disqusmen #commentform #submit, .blogbox .btitle .vl, .bigblogt span a,.big-slider .paging .centerpaging .swiper-pagination span.swiper-pagination-bullet-active {background:#01d9b9} .pagination span.page-numbers.current,.quickfilter .filters .filter.submit button,#sidebar .section .ts-wpop-series-gen .ts-wpop-nav-tabs li.active a,#gallery.owl-loaded .owl-dots .owl-dot.active span,.bs.stylefiv .bsx .chfiv li a:hover {background:#01d9b9 !important} 
+	#sidebar .section #searchform #searchsubmit,.series-gen .nav-tabs li.active a,.lastend .inepcx a,.nav_apb a:hover,#top-menu li a:hover,.readingnav.rnavbot .readingnavbot .readingbar .readingprogress,.lightmode .main-info .info-desc .wd-full .mgen a:hover,.lightmode .bxcl ul li .chbox:hover,.lightmode ul.taxindex li a:hover,.comment-list .comment-body .reply a:hover,.topmobile,.bxcl ul::-webkit-scrollbar-thumb,.lightmode .slider:before,.quickfilter .filters .filter .genrez::-webkit-scrollbar-thumb,.hothome .releases,.lightmode .seriestucon .seriestucont .seriestucontr .seriestugenre a:hover,.bloglist .blogbox .innerblog .thumb .btags {background:#01d9b9} 
+	.lightmode #sidebar .section h4, .lightmode .serieslist ul li .ctr,.listupd .utao .uta .luf ul li,.lightmode .bs .bsx:hover .tt,.soralist ul,a:hover,.lightmode .blogbox .btitle h3,.lightmode .blogbox .btitle h1,.bxcl ul li .lchx a:visited, .listupd .utao .uta .luf ul li a:visited,.lightmode .pagination a:hover,.lightmode a:hover,#sidebar .serieslist ul li .leftseries h2 a:hover,.bs.styletere .epxs,.bxcl ul li .dt a,.lightmode .main-info .info-desc .wd-full .mgen a,.lightmode #sidebar .serieslist ul li .leftseries h2 a:hover,.comment-list .comment-body .reply a,.bxcl ul li .eph-num a:visited,.headpost .allc a,.lightmode .seriestucon .seriestucont .seriestucontr .seriestugenre a,.bs.stylefiv .bsx .chfiv li a {color:#01d9b9} 
+	.bxcl ul li .lchx a:visited, .listupd .utao .uta .luf ul li a:visited,.bs.stylefiv .bsx .chfiv li a {color:#01d9b9 !important} 
+	.lightmode .serieslist ul li .ctr,.advancedsearch button.searchz,.lista a,.lightmode .lista a:hover,.blogbox .boxlist .bma .bmb .bmba, .page.blog .thumb,#sidebar .section #searchform #searchsubmit,.lightmode .main-info .info-desc .wd-full .mgen a,.lightmode .bxcl ul li .chbox:hover, .comment-list .comment-body .reply a,.lightmode .seriestucon .seriestucont .seriestucontr .seriestugenre a {border-color:#01d9b9}
+	.bs.stylefiv .bsx .chfiv li a:before {content: "";background: #01d9b9;opacity: 0.2;position: absolute;display: block;left: 0;right: 0;top: 0;bottom: 0;border-radius: 10px;}
+	.bs.stylefiv .bsx .chfiv li a{background:none !important;}
+	.slider.round:before{background: #333;}
+	.hpage a:hover,.bs.stylefiv .bsx .chfiv li a:hover{color:#FFF !important;}
+	@media only screen and (max-width:800px) {
+		.lightmode.black .th, .lightmode .th, .th, .surprise{background:#01d9b9} 
+		#main-menu {background: rgba(28,28,28,0.95);}
+	}
+    .home-genres{background:#01b3c4;}
+	.home-genres .alman a{color:#01b3c4;}

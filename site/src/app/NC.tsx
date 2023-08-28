@@ -1,0 +1,106 @@
+export default function NC(){
+    const URL: string = "https://aresmanga.org/urban-legend-maker-chapter-6/"
+    const title: string ="Urban Legend Maker – Chapter 6";
+    const cover: string = "https://i2.wp.com/aresmanga.org/wp-content/uploads/2023/08/Urban-Legend-Maker.jpg"
+    const width: number = 1442
+    const height: number = 2000
+    const chapterNumber: number = 20
+    const chapterTitle: string = `الفصل ${chapterNumber}`;
+    const publishDate: Date = new Date(2023, 7, 20)
+    
+    return(
+        <div className="bs styletere">
+        <div className="bsx">
+          <a
+            href={URL}
+            title={title}
+          >
+            <div className="limit">
+              <div className="ply" />
+              <span className="type Manhua" />
+              <span className="hotx">
+                <i className="fab fa-hotjar" />
+              </span>{" "}
+              <img
+                src={cover}
+                className="ts-post-image wp-post-image attachment-medium size-medium"
+                loading="lazy"
+                title={title}
+                alt={title}
+                width={width}
+                height={height}
+              />{" "}
+            </div>
+            <div className="bigor">
+              <div className="tt">{title}</div>
+              <div className="adds">
+                <div className="epxs">{chapterTitle}</div>
+                <div className="epxdate">{getDiff(publishDate)}</div>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    )
+}
+
+
+function getDiff(date: Date){
+const time: number = date.getTime()
+const timeNow: number = new Date().getTime()
+const diffinms: number = Math.abs(timeNow - time)
+console.log(diffinms)
+function inTime(ms: number, div: number){
+const number = Math.floor(ms / div)
+const prefixes:any={
+    "31557600000":{
+        one:'سنة',
+        two:'سنتين',
+        many:'سنين'
+    },
+    "2592000000":{
+        one:'شهر',
+        two:'شهرين',
+        many:'أشهر'
+    },
+    "604800000":{
+        one:'اسبوع',
+        two:'اسبوعين',
+        many:'اسابيع'
+    },
+    "86400000":{
+        one:'يوم',
+        two:'يومين',
+        many:'ايام'
+    },
+    "3600000":{
+    one:'ساعة',
+    two:'ساعتين',
+    many:'ساعات'
+    },
+    "60000":{
+        one: 'دقيقة',
+        two:'دقيقتين',
+        many: 'دقائق'
+    }
+
+}
+if(number == 1){
+    
+    return `قبل ${prefixes[div.toString()].one}`
+}
+if(number == 2){
+    return `قبل ${prefixes[div.toString()].two}`
+}
+if(number > 3){
+    return `قبل ${number} ${prefixes[div.toString()].many}`
+}
+}
+const year = 1000*60*60*24*365.25
+const month =  1000*60*60*24*30
+const week = 1000*60*60*24*7
+const day = 1000*60*60*24
+const hour = 1000*60*60
+const minute = 1000*60
+return diffinms >= year ?  inTime(diffinms, year) : diffinms >= month? inTime(diffinms, month) : diffinms>= week? inTime(diffinms, week) : diffinms >= day? inTime(diffinms, day) : diffinms >= hour? inTime(diffinms, hour) : diffinms >= minute? inTime(diffinms, hour) : 'now'
+}
