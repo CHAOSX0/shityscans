@@ -95,21 +95,7 @@ export default async function Home() {
       </div>
       <header role="banner" >
         <div className="site-branding logox">
-          <span className="logos">
-            <a
-              title="مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية - افضل موقع للمانجا المترجمة يضم مكتبة هائلة من المانجا المترجمة يمتاز بسرعة ترجمة الفصول الجديدة."
-              itemProp="url"
-              href="https://aresmanga.org/"
-            >
-              <img
-                src="https://aresmanga.org/wp-content/uploads/2022/12/ares-logo-blank.png"
-                alt="مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية - افضل موقع للمانجا المترجمة يضم مكتبة هائلة من المانجا المترجمة يمتاز بسرعة ترجمة الفصول الجديدة."
-              />
-              <span className="hdl">
-                مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية
-              </span>
-            </a>
-          </span>
+
           <meta
             itemProp="name"
             content="مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية"
