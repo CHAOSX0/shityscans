@@ -1,3 +1,5 @@
+import Search from "./nav/search"
+
 export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}){
     function NavELement({text, URL}: {text: string, URL: string}){
         return (
@@ -58,36 +60,8 @@ export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}
     </span>
     <div className="clear" />
   </nav>
-  <div className="searchx minmb">
-    <form
-      action="https://aresmanga.org/"
-      id="form"
-      method="get"
-      itemProp="potentialAction"
-
-      itemType="http://schema.org/SearchAction"
-    >
-      <meta itemProp="target" content="https://aresmanga.org/?s={query}" />
-      <input
-        id="s"
-        itemProp="query-input"
-        className="search-live"
-        type="text"
-        placeholder="بحث"
-        name="s"
-        autoComplete="off"
-      />
-      <button type="submit" id="submit">
-        <i className="fas fa-search" aria-hidden="true" />
-      </button>
-      <div className="srcmob srccls">
-        <i className="fas fa-times-circle" />
-      </div>
-    </form>
-  </div>
-  <div className="srcmob">
-    <i className="fas fa-search" aria-hidden="true" />
-  </div>
+  <Search />
+ 
 </div>
 <div className="clear" />
 </div>

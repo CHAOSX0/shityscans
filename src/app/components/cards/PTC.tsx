@@ -1,11 +1,11 @@
-import SeriesData from "./types/seriesData";
+import SeriesData from "../../types/seriesData";
 
 export default function PTCCard({title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta} : SeriesData){
     const link: string = 'https://aresmanga.org/series/evolution-begins-with-a-big-tree/';
     const cover: string = coverURL
     const chapterNumber = latestChaptersMeta.list[latestChaptersMeta.list.length -1 ].number
     const chapterTitle: string = `الفصل ${chapterNumber}`;
-    console.log(latestChaptersMeta)
+    
 
 return(
     <div className="bs">

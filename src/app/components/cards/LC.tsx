@@ -6,7 +6,7 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
     const height: number = coverWidth;
     const chapters = latestChaptersMeta.list.map((e: any, i: number)=><Chapter key={i} {...e}/>)
     return(
-        <div className="bs styletere stylefiv">
+        <div className="bs styletere stylefiv" dir="rtl">
               <div className="bsx">
                 <a
                   href={URL}
