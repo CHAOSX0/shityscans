@@ -2,7 +2,7 @@ import Nav from "@/components/nav"
 
 export default async function Series(){
     const coverURL = ''
-    const chapters = [{number: 1, date: new Date(2023, 6, 10), URL: '/chapter/hi'}, {number: 2, date: new Date(2023, 7, 10), URL: '/chapter/hi1',}]
+    const chapters = [{number: 1, date: new Date(2023, 6, 10).toDateString(), URL: '/chapter/hi'}, {number: 2, date: new Date(2023, 7, 10).toDateString(), URL: '/chapter/hi1',}]
     const chapterELements = chapters.map((e, i: number) => <Chapter {...e} key={i} />)
     const genresDummyData = [{URL: '/genre/action', text: 'أكشن'}, {URL: '/genre/romance', text: 'روومانسي'}, {URL: '/genre/comedy', text: 'كوميديا'}, {URL: '/genre/system', text: 'نظام'}]
     const genres = genresDummyData.map((e, i)=><Genre {...e} key={i} />)
@@ -120,10 +120,9 @@ export default async function Series(){
               </div>
             </div>
             <div className="ts-breadcrumb bixbox">
-              <ol itemScope="" itemType="http://schema.org/BreadcrumbList">
+              <ol itemScope itemType="http://schema.org/BreadcrumbList">
                 <li
                   itemProp="itemListElement"
-                  itemScope=""
                   itemType="http://schema.org/ListItem"
                 >
                   <a itemProp="item" href="https://aresnov.org/">
@@ -131,12 +130,11 @@ export default async function Series(){
                       مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية
                     </span>
                   </a>
-                  <meta itemProp="position" content={1} />
+                  <meta itemProp="position" />
                 </li>
                 ›
                 <li
                   itemProp="itemListElement"
-                  itemScope=""
                   itemType="http://schema.org/ListItem"
                 >
                   <a
@@ -145,7 +143,7 @@ export default async function Series(){
                   >
                     <span itemProp="name">Villain is Here</span>
                   </a>
-                  <meta itemProp="position" content={2} />
+                  <meta itemProp="position"/>
                 </li>
               </ol>
             </div>
@@ -511,13 +509,12 @@ export default async function Series(){
         <span
           style={{ display: "none" }}
           itemProp="publisher"
-          itemScope=""
           itemType="https://schema.org/Organization"
         >
           <span
             style={{ display: "none" }}
             itemProp="logo"
-            itemScope=""
+            itemScope
             itemType="https://schema.org/ImageObject"
           >
             <meta
@@ -550,7 +547,7 @@ function Genre({URL, text}: {URL: string, text: string}){
     )
 
 }
-function CoverInfo({coverURL, title, type, created_at, status}){
+function CoverInfo({coverURL, title, type, created_at, status}: {coverURL: string, title: string, created_at: string, type: string, status: string}){
     const creationDateString: string = toDate(created_at)
 return(
     <div className="info-left-margin">
@@ -576,19 +573,18 @@ return(
     <div className="rating bixbox">
       <div
         className="rating-prc"
-        itemScope="itemscope"
         itemProp="aggregateRating"
         itemType="//schema.org/AggregateRating"
       >
-        <meta itemProp="worstRating" content={1} />
-        <meta itemProp="bestRating" content={10} />
-        <meta itemProp="ratingCount" content={10} />
+        <meta itemProp="worstRating"/>
+        <meta itemProp="bestRating"  />
+        <meta itemProp="ratingCount"  />
         <div className="rtp">
           <div className="rtb">
             <span style={{ width: "90%" }} />
           </div>
         </div>
-        <div className="num" itemProp="ratingValue" content={9.0}>
+        <div className="num" itemProp="ratingValue" >
           9.0
         </div>
       </div>
@@ -628,8 +624,8 @@ return(
 )
 }
 function toDate(date: string){
-    const options = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric' };
-    const res = convertNumeral(new Date(date).toLocaleDateString('ar-EG',options))
+    const options: {weekday: any, year: any, month: any, day: any} = { weekday: "long", year: 'numeric', month: 'long', day: 'numeric'};
+    const res = convertNumeral(new Date(date).toLocaleDateString('ar-EG', options))
     function convertNumeral(text: string) : string{
         let txt = text
      txt = txt.replaceAll('١', '1')

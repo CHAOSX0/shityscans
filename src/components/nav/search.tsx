@@ -48,7 +48,7 @@ async function getResults(query: string){
 export default function Search(){
 const [isLoding, setIsLoading] = useState(false)
 const [isShowing, setIsShowing] = useState(false)
-const [results, setResults] = useState([]);
+const [results, setResults]:[any, any] = useState([]);
 return (
     <>
     <div className="searchx minmb">
@@ -58,7 +58,7 @@ return (
       }}
       onSubmit={(e)=>{
           e.preventDefault()
-         const input: any = document.getElementById("s").value;
+         const input: any = (document!.getElementById("s") as HTMLInputElement)!.value;
          if(input){
             setIsLoading(true)
             setIsShowing(true)
