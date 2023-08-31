@@ -1,4 +1,3 @@
-
 import PTCCard from './components/cards/PTC';
 import LCard from './components/cards/LC';
 import NC from './components/cards/NC';
@@ -137,42 +136,42 @@ export default async function Home() {
   const genres = await getGenres(6)
   return (
     <>
-    <div className="mainholder rtl" dir='rtl'>
+    <div className='relative'>
      <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text: 'أعمالنا', URL: '/serieslist'}, {text:'المفضلة', URL: '/favorite'}]}/>
      <Slider pages={tempSliderData} />
      <Genres data={genres}/>
-  <div id="content">
-    <div className="wrapper">
-      <div className="hotslid">
-        <div className="bixbox hothome full">
+  <div id="content" className='overflow-hidden max-w-screen-xl mt-9 relative pb-72 mx-auto mb-0'>
+    <div className="my-0 mx-5 relative">
+      <div className="hotslid"> 
+        <div className="bixbox hothome full overflow-hidden rounded mb-4  bg-neutral-800">
           <div className="releases">
-            <h2>شائع اليوم</h2>
+            <h2 className="mt-4 text-sm">شائع اليوم</h2>
           </div>
-          <div className="listupd">
+          <div className="p-2 overflow-hidden">
            {PopularSeries}
           </div>
         </div>
       </div>
-      <div className="postbody">
-        <div className="kln">
+      <div className="float-right w-8/12"> 
+        <div className="text-center relative overflow-hidden">
         </div>
         <br />
-        <div className="bixbox">
-          <div className="releases">
+        <div className="bixbox rounded-sm mb-4 overflow-hidden"> 
+          <div className="releases relative flex justify-between items-baseline">
             <h2>جديد إصداراتنا</h2>
             <a className="vl" href="https://aresmanga.org/series/?order=update">
               جميــع الأعمال
             </a>
           </div>
-          <div className="listupd">
+          <div className="p-2 overflow-hidden">
             {latestSeries}
           </div>
         </div>
-        <div className="bixbox">
-          <div className="releases">
+        <div className="bixbox rounded-sm mb-4 overflow-hidden">
+          <div className="releases relative flex justify-between items-baseline">
             <h2>مضاف حديثا</h2>
           </div>
-          <div className="listupd">
+          <div className="p-2 overflow-hidden">
             {latestAdedSeries}
           </div>
         </div>{" "}
@@ -185,14 +184,14 @@ export default async function Home() {
   <div id="footer">
     <footer
       id="colophon"
-      className="site-footer"
+      className="site-footer mt-8 text-center leading-5 p-0 text-xs text-white absolute w-full bottom-0"
     
       itemType="http://schema.org/WPFooter"
       role="contentinfo"
     >
       <div className="footermenu">
         <div className="menu-footer-container">
-          <ul id="menu-footer" className="menu">
+          <ul id="menu-footer" className="menu p-0 m-0 block overflow-hidden">
             <li
               id="menu-item-116"
               className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-116"
@@ -238,11 +237,11 @@ export default async function Home() {
           </ul>
         </div>
       </div>{" "}
-      <div className="footercopyright">
-        <div className="sosmedmrgn" />{" "}
-        <div className="copyright">
+      <div className="footercopyright overflow-hidden relative">
+        <div className="sosmedmrgn mt-8" />{" "}
+        <div className="copyright overflow-hidden mb-8">
           <div className="txt">
-            <p>
+            <p className='m-0 mt-1 mb-0 leading-4'>
               All the comics on this website are only previews of the original
               comics, there may be many language errors, character names, and
               story lines. For the original version, please buy the comic if

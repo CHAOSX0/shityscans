@@ -1,0 +1,43 @@
+.hothome .releases h2 {
+    padding: 5px 20px;
+    background: #222;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.releases {
+    border-bottom: 1px solid #312f40;
+    padding: 8px 15px;
+}
+
+#footer {
+    background: #222;
+}
+
+.footercopyright {
+    max-width: 1220px;
+    padding: 0 20px;
+    margin: 0 auto;
+    z-index: 1;
+}
+
+#footer .footermenu ul {
+    list-style: none;
+}
+
+.footercopyright .copyright .txt {
+    margin: 0 auto;
+    max-width: 700px;
+}
+
+.footercopyright p {
+    font-size: .9em;
+    letter-spacing: .5px;
+}
+
+.bixbox {
+    background: #222;
+    -ms-box-shadow: 0 2px 3px rgba(0,0,0,.1);
+    -o-box-shadow: 0 2px 3px rgba(0,0,0,.1);
+    box-shadow: 0 2px 3px rgba(0,0,0,.1);
+}
