@@ -1,4 +1,4 @@
-import SeriesData from "./types/seriesData";
+import SeriesData from "../../types/seriesData";
 export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at, }: SeriesData){
     const URL: string = "https://aresmanga.org/urban-legend-maker-chapter-6/";
     const cover: string = coverURL;
@@ -49,7 +49,6 @@ function getDiff(date: Date){
 const time: number = date.getTime()
 const timeNow: number = new Date().getTime()
 const diffinms: number = Math.abs(timeNow - time)
-console.log(diffinms)
 function inTime(ms: number, div: number){
 const number = Math.floor(ms / div)
 const prefixes:any={

@@ -11,7 +11,7 @@
     transform: translateX(0) !important;
 }
 .chfiv li{
-    flex-direction: row-reverse;
+    flex-direction: row;
     display: flex;
     gap: 3px;
 }
@@ -20,10 +20,26 @@
 }
 
 .tt{
-    text-align: left !important;
+    text-align: right !important;
    
 }
+@media only screen and (max-width: 300px){
+    .centernav header{
+        display: none;
+    }
+}
 @media only screen and (max-width: 600px){
+    .th .centernav{
+        display: flex;
+        padding: 0 5px;
+        justify-content: space-between;
+    }
+   
+    .searchx{
+       width: 0;
+       max-width: 250px;
+       flex-grow: 1;
+    }
     swiper-container{
         height: 250px !important;
     }

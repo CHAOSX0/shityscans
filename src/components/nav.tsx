@@ -1,3 +1,5 @@
+import Search from "./nav/search"
+
 export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}){
     function NavELement({text, URL}: {text: string, URL: string}){
         return (
