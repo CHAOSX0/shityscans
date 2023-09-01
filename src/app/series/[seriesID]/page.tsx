@@ -1,6 +1,6 @@
 import Nav from "@/components/nav"
 import SeriesData from "@/app/types/seriesData";
-
+import Link from "next/dist/client/link";
 async function getData(seriesID: string){
   const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
     next:{
@@ -142,9 +142,9 @@ export default async function Page({ params }: { params: { seriesID: string } })
                   itemProp="itemListElement"
                   itemType="http://schema.org/ListItem"
                 >
-                  <a itemProp="item" href="https://aresnov.org/">
+                  <a itemProp="item" href="/">
                     <span itemProp="name">
-                      مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية
+                      مانجا Scanly |أفضل موقع للمانهوا والمانجا العربية
                     </span>
                   </a>
                   <meta itemProp="position" />
@@ -156,27 +156,27 @@ export default async function Page({ params }: { params: { seriesID: string } })
                 >
                   <a
                     itemProp="item"
-                    href="https://aresnov.org/series/villain-is-here/"
+                    href='#'
                   >
-                    <span itemProp="name">Villain is Here</span>
+                    <span itemProp="name">{title}</span>
                   </a>
                   <meta itemProp="position"/>
                 </li>
               </ol>
             </div>
             <div className="ts-breadcrumb bixbox">
-              مانجا <strong>Villain is Here</strong>, مانجا{" "}
-              <strong>Villain is Here</strong> مترجمة, read{" "}
-              <strong>Villain is Here</strong>, <strong>Villain is Here</strong>{" "}
-              english, <strong>Villain is Here</strong> eng, download{" "}
-              <strong>Villain is Here</strong> eng, read{" "}
-              <strong>Villain is Here</strong> online, قراءة{" "}
-              <strong>Villain is Here</strong>, <strong>Villain is Here</strong>{" "}
-              مترجم, <strong>Villain is Here</strong> بالعربية ,تنزيل{" "}
-              <strong>Villain is Here</strong> مترجم ,قراءة{" "}
-              <strong>Villain is Here</strong> مجانا,{" "}
-              <strong>Villain is Here</strong> مانجا لايك,{" "}
-              <strong>Villain is Here</strong> motarjam
+              مانجا <strong>{title}</strong>, مانجا{" "}
+              <strong>{title}</strong> مترجمة, read{" "}
+              <strong>{title}</strong>, <strong>{title}</strong>{" "}
+              english, <strong>{title}</strong> eng, download{" "}
+              <strong>{title}</strong> eng, read{" "}
+              <strong>{title}</strong> online, قراءة{" "}
+              <strong>{title}</strong>, <strong>{title}</strong>{" "}
+              مترجم, <strong>{title}</strong> بالعربية ,تنزيل{" "}
+              <strong>{title}</strong> مترجم ,قراءة{" "}
+              <strong>{title}</strong> مجانا,{" "}
+              <strong>{title}</strong> مانجا لايك,{" "}
+              <strong>{title}</strong> motarjam
             </div>
           </div>
         </div>
@@ -541,7 +541,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
           </span>
           <meta
             itemProp="name"
-            content="مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية"
+            content="مانجا Scanly أفضل موقع للمانهوا والمانجا العربية"
           />
         </span>
       </article>
@@ -588,16 +588,16 @@ function ChapterBox({chapters, lastChapter, title}: {chapters: Array<{URL: strin
     </div>
     <div className="lastend">
       <div className="inepcx">
-        <a href={firstChapter.URL}>
+        <Link href={firstChapter.URL}>
           <span>الفصل الأول</span>
           <span className="epcur epcurfirst">{firstChapterTitle}</span>
-        </a>
+        </Link>
       </div>
       <div className="inepcx">
-        <a href={lastChapter.URL}>
+       <Link href={lastChapter.URL}>
           <span>فصل جديد</span>
           <span className="epcur epcurlast">{lastChapterTitle}</span>
-        </a>
+       </Link>
       </div>
     </div>
     <div className="search-chapter">

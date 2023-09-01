@@ -1,6 +1,7 @@
+import Link from "next/link";
 import SeriesData from "../../types/seriesData";
-export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at, }: SeriesData){
-    const URL: string = "https://aresmanga.org/urban-legend-maker-chapter-6/";
+export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at,URL }: SeriesData){
+
     const cover: string = coverURL;
     const width: number = coverWidth;
     const height: number = coverHeight;
@@ -11,7 +12,7 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
     return(
         <div className="bs styletere">
         <div className="bsx">
-          <a
+          <Link
             href={URL}
             title={title}
           >
@@ -38,7 +39,7 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
                 <div className="epxdate">{getDiff(publishDate)}</div>
               </div>
             </div>
-          </a>
+          </Link>
         </div>
       </div>
     )

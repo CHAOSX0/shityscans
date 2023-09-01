@@ -33,7 +33,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-
+      <meta name="monetag" content="9f4910ae72e8c8800b913cac308318ad"></meta>
       <body className={changa.className}>{children}</body>
     </html>
   )

@@ -10,6 +10,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
+import Link from 'next/link'
 register();
 export default function Slider({pages}){ 
   const swiperElRef = useRef(null);
@@ -39,7 +40,7 @@ export default function Slider({pages}){
 function SliderPage({title, Description, genres, coverURL, URL, classification}){
 return (
         <SwiperSlide>
-            <a href={URL}>
+            <Link href={URL}>
               <div className="mainslider" dir="rtl" >
                 <div className="limit">
                   <div className="sliderinfo">
@@ -65,10 +66,10 @@ return (
                   <div
                     className="bigbanner relative flex justify-center h-full"
                   />
-                  <Image unoptimized src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
+                  <Image priority unoptimized src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
                 </div>
               </div>
-            </a>
+            </Link>
             </SwiperSlide>
 )
 }

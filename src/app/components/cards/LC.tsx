@@ -1,5 +1,8 @@
-export default function LCard({title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta}: {title: string, coverURL: string, created_at: string, coverHeight: number, coverWidth: number, rating: number, latestChaptersMeta: {list: Array<{number: number, created_at:string, URL: string}>} }){
-    const URL: string = "https://aresmanga.org/series/84519-rise-of-the-god-slaying-master/";
+import SeriesData from '@/app/types/seriesData';
+import Link from 'next/link'
+
+export default function LCard({title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, URL}: SeriesData){
+   
     const type: string = 'Manhua';
     const cover: string = coverURL
     const width: number = coverHeight;
@@ -8,7 +11,7 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
     return(
         <div className="bs styletere stylefiv" dir="rtl">
               <div className="bsx">
-                <a
+                <Link
                   href={URL}
                   title={title}
                 >
@@ -25,7 +28,7 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
                       height={height}
                     />
                   </div>
-                </a>
+                </Link>
                 <div className="bigor" style={{height:100}}>
                   <div className="tt" style={{paddingLeft:'7px'}}>
                     <a
