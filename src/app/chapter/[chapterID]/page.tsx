@@ -22,7 +22,7 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
           <article
             id="post-142903"
             className="post-142903 hentry"
-            itemScope="itemscope"
+            itemScope
             itemType="http://schema.org/CreativeWork"
           >
             <div className="headpost">
@@ -62,12 +62,12 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                   >
                     <span itemProp="name">Villain is Here</span>
                   </a>
-                  <meta itemProp="position" content={2} />
+                  <meta itemProp="position" />
                 </li>
                 ›
                 <li
                   itemProp="itemListElement"
-                  itemScope=""
+                  itemScope
                   itemType="http://schema.org/ListItem"
                 >
                   <a
@@ -76,7 +76,7 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                   >
                     <span itemProp="name">Villain is Here – Chapter 95</span>
                   </a>
-                  <meta itemProp="position" content={3} />
+                  <meta itemProp="position" />
                 </li>
               </ol>
             </div>
@@ -119,7 +119,7 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                 <span className="navrig">
                   <span className="selector readingmode l">
                     <select name="readingmode" id="readingmode">
-                      <option value="full" selected="selected">
+                      <option value="full" selected>
                         صفحة كاملة
                       </option>
                       <option value="single">صفحة واحدة</option>
@@ -200,15 +200,14 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                     <select
                       name="chapter"
                       id="chapter"
-                      onchange="this.options[this.selectedIndex].value&&window.open(this.options[this.selectedIndex].value,'_self')"
                     >
-                      <option value="" disabled="disabled">
+                      <option value="">
                         إختيار الفصل
                       </option>
                       <option
                         data-id={142903}
                         value="https://aresnov.org/villain-is-here-chapter-95/"
-                        selected="selected"
+                        selected
                       >
                         Chapter 95
                       </option>
@@ -754,7 +753,7 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                   className="entry-date"
                   dateTime="2023-07-31CEST02:52:21+0200"
                   itemProp="datePublished"
-                  pubdate=""
+                 
                 >
                   31/07/2023
                 </time>
@@ -1083,8 +1082,8 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                     overflow: "hidden !important",
                     height: "3219px !important"
                   }}
-                  horizontalscrolling="no"
-                  verticalscrolling="no"
+                  
+                  
                 />
               </div>
             </div>
@@ -1166,15 +1165,14 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
 }
 
 
-function Page({URL}: {URl: string}){
+function Page({URL}: {URL: string}){
     return (
         <img
                   className="ts-main-image curdown"
                   data-index={0}
                   src={URL}
                   data-server="Server1"
-                  onload="ts_reader_control.singleImageOnload();"
-                  onerror="ts_reader_control.imageOnError();"
+                 
                 />
     )
 }

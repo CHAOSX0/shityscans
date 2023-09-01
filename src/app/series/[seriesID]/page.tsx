@@ -72,7 +72,8 @@ export default async function Page({ params }: { params: { seriesID: string } })
    
     const genres = genresDummyData.map((e, i)=><Genre {...e} key={i} />)
     const [d]  = await getData(params.seriesID);
-    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, details}: SeriesData = d;
+    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta}: SeriesData = d;
+    const {details}: {details: string} = d
     const [d2] = await getDetails(details)
     const {description} : {description: string} = d2
     console.log(coverURL)
@@ -561,7 +562,7 @@ function ChapterBox({chapters, lastChapter, title}: {chapters: Array<{URL: strin
   }else{
     console.log(chapters)
   }
-  const chapterELements = chapters.map((e: {URL: string, number: number, created_at: string}, i: number) => <Chapter {...e} key={i} />)
+  const chapterELements = chapters.map((e:any, i: number) => <Chapter {...e} key={i} />)
   const firstChapter = [...chapters].sort((a, b)=> a.number - b.number)[0]
   console.log(firstChapter)
   const firstChapterTitle = `الفصل ${firstChapter.number}`
