@@ -29,6 +29,6 @@
     },
     "forceConsistentCasingInFileNames": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/Slider.js", "src/app/components/Slider.js", "src/app/components/Slider.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/components/Slider.js", "src/app/components/Slider.js", "src/app/components/Slider.js", ".next/types/app/series/page.ts"],
   "exclude": ["node_modules"]
 }

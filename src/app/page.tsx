@@ -6,6 +6,28 @@ import Slider from './components/Slider';
 import Genres from './components/genres';
 import SeriesData from './types/seriesData';
 import genre from './types/genre';
+import { supabase } from '../../lib/supabase';
+async function getBanners(n: number){
+  const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/baners', {
+    next:{
+      revalidate: 60*60
+    },
+    headers:{
+      'Range-Unit': 'items',
+      'Range': '0-'+n,
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  })
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+
+  return await res.json()
+}
 async function getLatesAddedSeriesData(n: number){
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?order=created_at', {
     next:{
@@ -33,6 +55,7 @@ async function getLatesAddedSeriesData(n: number){
 }
 async function getPopularSeriesData(n: number) : Promise<Array<any>>{
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?is_popular=is.true', {
+    cache:'reload',
     next:{
       revalidate: 10
     },
@@ -117,19 +140,7 @@ export default async function Home() {
   const PopularSeries: any = popularseriesdata.map((e: SeriesData, i:number)=><PTCCard {...e} key={i}/>);
   const latestSeries: any = latestSeriesData.map((e: SeriesData, i: number)=><LCard key={i} {...e}/>);
   //>temporary data
-  const tempSliderData = [{title: 'martial peak',
-  Description: 'واحد ضعيف بصير قوي و بيجمع مية الف مرأة',
-  genres: ' هكر, مصاري, نسوان, اغتصاب',
-  coverURL: 'https://i3.wp.com/aresnov.org/wp-content/uploads/2022/12/GE_Yang_Kai.jpg',
-  URL: '/series/martialpeak',
-  classification: 'Manhua'},
-  { title: 'martial peak',
-  Description: 'واحد ضعيف بصير قوي و بيجمع مية الف مرأة',
-  genres: 'هكر,مصاري, نسوان, اغتصاب',
-  coverURL: 'https://i3.wp.com/aresnov.org/wp-content/uploads/2022/12/GE_Yang_Kai.jpg',
-  URL: '/series/martialpeak',
-  classification: 'Manhua'}];
-
+  const tempSliderData = await getBanners(6)
  /* const genres: Array<genre> = [
     {URL: '/genre/action', text: 'أكشن'},{ URL: '/genre/romance', text: 'رومانسي'},{ URL: '/genre/comedy', text: 'كوميديا'},{URL: '/genre/school', text: 'مدرسي'}
   ]*/

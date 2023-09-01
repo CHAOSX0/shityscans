@@ -1,11 +1,81 @@
 import Nav from "@/components/nav"
+import SeriesData from "@/app/types/seriesData";
 
-export default async function Series(){
-    const coverURL = ''
-    const chapters = [{number: 1, date: new Date(2023, 6, 10).toDateString(), URL: '/chapter/hi'}, {number: 2, date: new Date(2023, 7, 10).toDateString(), URL: '/chapter/hi1',}]
-    const chapterELements = chapters.map((e, i: number) => <Chapter {...e} key={i} />)
+async function getData(seriesID: string){
+  const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
+    next:{
+      revalidate: 10
+    },
+    headers:{
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+ // console.log(result)
+  return result
+}
+
+async function getChapters(seriesID: string, n: number, S ='0'){
+  const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?series=eq.${seriesID}&order=number.desc`
+  const res = await fetch(url, {
+    cache: 'no-cache',
+    headers:{
+      'Range-Unit': 'items',
+      'Range': `${S}-${n}`,
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+  console.log(result)
+  return result
+}
+async function getDetails(id: string, S=60*60*12) {
+  const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/seriesDetails?id=eq.${id}`
+  const res = await fetch(url, {
+    next:{
+      revalidate: S
+    },
+    headers:{
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+  //console.log(result)
+  return result
+}
+export default async function Page({ params }: { params: { seriesID: string } }) {
+    const chapters = await getChapters(params.seriesID, 20)
+    console.log(chapters)
+    
     const genresDummyData = [{URL: '/genre/action', text: 'أكشن'}, {URL: '/genre/romance', text: 'روومانسي'}, {URL: '/genre/comedy', text: 'كوميديا'}, {URL: '/genre/system', text: 'نظام'}]
+   
     const genres = genresDummyData.map((e, i)=><Genre {...e} key={i} />)
+    const [d]  = await getData(params.seriesID);
+    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, details}: SeriesData = d;
+    const [d2] = await getDetails(details)
+    const {description} : {description: string} = d2
+    console.log(coverURL)
     return (
      
     <div className="mainholder rtl" dir='rtl'>
@@ -17,7 +87,7 @@ export default async function Series(){
         className="bigbanner"
         style={{
           backgroundImage:
-            'url("https://i3.wp.com/aresnov.org/wp-content/uploads/2022/12/banner-villain-is-here-1.jpg")'
+            `url("${coverURL}")`
         }}
       />
     </div>
@@ -29,16 +99,16 @@ export default async function Series(){
       >
         <div className="main-info">
           <div className="info-left">
-           <CoverInfo status="OnGoing" type="Manhua" coverURL="https://aresnov.org/wp-content/uploads/2022/12/Villain-is-Here.webp" title="testing" created_at={new Date(2023, 5, 20).toDateString()}/>
+           <CoverInfo status="OnGoing" type="Manhua" coverURL={coverURL} title={title} created_at={created_at}/>
           </div>
           <div className="info-right">
             <div className="info-desc bixbox">
               <div id="titledesktop">
                 <div id="titlemove">
                   <h1 className="entry-title" itemProp="name">
-                    Villain is Here
+                    {title}
                   </h1>
-                  <span className="alternative">I am the Fated Villain</span>
+                  <span className="alternative">{title}</span>
                 </div>
               </div>
               <div className="wd-full">
@@ -47,22 +117,13 @@ export default async function Series(){
                 </span>
               </div>
               <div className="wd-full">
-                <h2>قصة مانجا: Villain is Here</h2>
+                <h2>قصة مانجا: {title}</h2>
                 <div
                   className="entry-content entry-content-single"
                   itemProp="description"
                 >
                   <p>
-                    فورًا بعد أن استوعب غو تشان غي بأنه قد انتقل إلى عالم خيالي
-                    آخر… هناك حيث أقسم بطل القصة الرئيسي، ومُختار إلهة الحظ بأنه
-                    سينتقم منه. بينما يغار منه الجميع، هو لم يكن يملك “البطلة”
-                    إلى جانبه فحسب ولكنه كان يُعامل بصفته ضيفًا موقرًا أينما حلّ
-                    وارتحل. من حسن حظه أن قوته كانت تفوق أي أحد آخر، ولكن ألا
-                    يعني هذا أن بإمكانه أن يتعامل مع البطل الرئيسي للقصة بسهولة
-                    تامة؟
-                    <br />
-                    تابعونا لمعرفة ما تخفيه قصة الشرير غو من خبايا فقط على
-                    موقعكم المفضل Aresmanga
+                   {description}
                   </p>
                 </div>
               </div>
@@ -73,52 +134,7 @@ export default async function Series(){
               }}
             />
             {/* series history*/}
-            <div
-              className="bixbox bxcl"
-              id="series-history"
-              style={{ display: "none" }}
-            >
-              <div className="releases">
-                <h2>سجل القراءة</h2>
-              </div>
-              <div className="series-history-pool">
-                <ul className="clstyle" id="series-history-ul" />
-              </div>
-            </div>
-
-            {/* /series history*/}
-            <div className="bixbox bxcl epcheck">
-              <div className="releases">
-                <h2>فصول Villain is Here</h2>
-              </div>
-              <div className="lastend">
-                <div className="inepcx">
-                  <a href="https://aresnov.org/villain-is-here-chapter-1/">
-                    <span>الفصل الأول</span>
-                    <span className="epcur epcurfirst">الفصل 1</span>
-                  </a>
-                </div>
-                <div className="inepcx">
-                  <a href="https://aresnov.org/villain-is-here-chapter-95/">
-                    <span>فصل جديد</span>
-                    <span className="epcur epcurlast">الفصل 95</span>
-                  </a>
-                </div>
-              </div>
-              <div className="search-chapter">
-                <input
-                  id="searchchapter"
-                  type="text"
-                  placeholder="البحث عن الفصل. مثال: 25 or 178"
-                  autoComplete="off"
-                />
-              </div>
-              <div className="eplister" id="chapterlist">
-              <ul>
-                {chapterELements}
-              </ul>
-              </div>
-            </div>
+             <ChapterBox chapters={chapters} lastChapter={latestChaptersMeta.list[0]} title={title}/>
             <div className="ts-breadcrumb bixbox">
               <ol itemScope itemType="http://schema.org/BreadcrumbList">
                 <li
@@ -535,7 +551,71 @@ export default async function Series(){
     </div>
     )
 }
+function ChapterBox({chapters, lastChapter, title}: {chapters: Array<{URL: string, number: number}>, lastChapter: {URL: string, number: number}, title: string}){
+  if(!chapters.length){
+    return(<>
+    <div style={{height: '150px', display: 'flex', alignItems: 'center', backgroundColor:'#222', borderRadius: '5px', fontSize: 'large', paddingRight:'10px'}}>
+      لا يوجد فصول
+    </div>
+    </>)
+  }else{
+    console.log(chapters)
+  }
+  const chapterELements = chapters.map((e: {URL: string, number: number, created_at: string}, i: number) => <Chapter {...e} key={i} />)
+  const firstChapter = [...chapters].sort((a, b)=> a.number - b.number)[0]
+  console.log(firstChapter)
+  const firstChapterTitle = `الفصل ${firstChapter.number}`
+  const lastChapterTitle = `الفصل ${lastChapter.number}`
+  return (
+    <>  <div
+    className="bixbox bxcl"
+    id="series-history"
+    style={{ display: "none" }}
+  >
+    <div className="releases">
+      <h2>سجل القراءة</h2>
+    </div>
+    <div className="series-history-pool">
+      <ul className="clstyle" id="series-history-ul" />
+    </div>
+  </div>
 
+  {/* /series history*/}
+  <div className="bixbox bxcl epcheck">
+    <div className="releases">
+      <h2>فصول {title}</h2>
+    </div>
+    <div className="lastend">
+      <div className="inepcx">
+        <a href={firstChapter.URL}>
+          <span>الفصل الأول</span>
+          <span className="epcur epcurfirst">{firstChapterTitle}</span>
+        </a>
+      </div>
+      <div className="inepcx">
+        <a href={lastChapter.URL}>
+          <span>فصل جديد</span>
+          <span className="epcur epcurlast">{lastChapterTitle}</span>
+        </a>
+      </div>
+    </div>
+    <div className="search-chapter">
+      <input
+        id="searchchapter"
+        type="text"
+        placeholder="البحث عن الفصل. مثال: 25 or 178"
+        autoComplete="off"
+      />
+    </div>
+    <div className="eplister" id="chapterlist">
+    <ul>
+      {chapterELements}
+    </ul>
+    </div>
+  </div>
+  </>
+  )
+}
 function Genre({URL, text}: {URL: string, text: string}){
     return (
      <>
@@ -643,12 +723,12 @@ function toDate(date: string){
     }
     return res 
 }
-function Chapter({number, date, URL}: {number: number, date: string, URL: string}){
+function Chapter({number, created_at, URL}: {number: number, created_at: string, URL: string}){
     const chapterTitle: string = `الفصل ${number}`
    
    
     
-    const chapterEnglishDate:string = toDate(date)
+    const chapterEnglishDate:string = toDate(created_at)
     
     
      return (

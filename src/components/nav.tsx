@@ -62,37 +62,7 @@ export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}
     </span>
     <div className="clear-both" />
   </nav>
-  <div className="searchx minmb relative float-left">
-    <form
-      action="https://aresmanga.org/"
-      id="form"
-      method="get"
-      itemProp="potentialAction"
-
-      itemType="http://schema.org/SearchAction"
-      className="p-0 relative"
-    >
-      <meta itemProp="target" content="https://aresmanga.org/?s={query}" />
-      <input
-        id="s"
-        itemProp="query-input"
-        className="search-live pl-8 pr-3 font-light bg-gray-900 block w-full h-8 text-sm text-white"
-        type="text"
-        placeholder="بحث"
-        name="s"
-        autoComplete="off"
-      />
-      <button type="submit" id="submit">
-        <i className="fas fa-search" aria-hidden="true" />
-      </button>
-      <div className="srcmob srccls">
-        <i className="fas fa-times-circle" />
-      </div>
-    </form>
-  </div>
-  <div className="srcmob hidden">
-    <i className="fas fa-search" aria-hidden="true" />
-  </div>
+  <Search />
 </div>
 <div className="clear-both" />
 </div>
