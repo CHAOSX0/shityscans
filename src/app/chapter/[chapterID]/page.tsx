@@ -801,14 +801,14 @@ export default async function Chapter ({ params }: { params: { chapterID: string
                     <div className="nextprev">
                       <a
                         className="ch-prev-btn"
-                        href="https://aresnov.org/villain-is-here-chapter-94/"
+                        href={prevURL}
                         rel="prev"
                       >
                         <i className="fas fa-angle-left" /> السابق{" "}
                       </a>
                       <a
                         className="ch-next-btn disabled"
-                        href="#/next/"
+                        href={nextURL}
                         rel="next"
                       >
                         التالي <i className="fas fa-angle-right" />
