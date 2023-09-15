@@ -1,6 +1,7 @@
 import Nav from "@/components/nav"
 import SeriesData from "@/app/types/seriesData";
 import Link from "next/dist/client/link";
+import genre from "@/app/types/genre";
 async function getData(seriesID: string){
   const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
     next:{
@@ -40,7 +41,7 @@ async function getChapters(seriesID: string, n: number, S ='0'){
     return;
   }
   const result = await res.json()
-  console.log(result)
+ 
   return result
 }
 async function getDetails(id: string, S=60*60*12) {
@@ -65,20 +66,14 @@ async function getDetails(id: string, S=60*60*12) {
   return result
 }
 export default async function Page({ params }: { params: { seriesID: string } }) {
-    const chapters = await getChapters(params.seriesID, 20)
-    console.log(chapters)
-    
-    const genresDummyData = [{URL: '/genre/action', text: 'أكشن'}, {URL: '/genre/romance', text: 'روومانسي'}, {URL: '/genre/comedy', text: 'كوميديا'}, {URL: '/genre/system', text: 'نظام'}]
-   
-    const genres = genresDummyData.map((e, i)=><Genre {...e} key={i} />)
+    const chapters = await getChapters(params.seriesID, 100)
     const [d]  = await getData(params.seriesID);
-    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta}: SeriesData = d;
+    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, genres:  genresData}: SeriesData = d;
+    const genres = genresData.map((e: genre, i)=><Genre URL={`/genre/${e}`} text={e} key={i} />)
     const {details}: {details: string} = d
     const [d2] = await getDetails(details)
     const {description} : {description: string} = d2
-    console.log(coverURL)
     return (
-     
     <div className="mainholder rtl" dir='rtl'>
      <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text: 'أعمالنا', URL: '/serieslist'}, {text:'المفضلة', URL: '/favorite'}]}/>
      <div id="content" className="manga-info mangastyle">
@@ -560,11 +555,11 @@ function ChapterBox({chapters, lastChapter, title}: {chapters: Array<{URL: strin
     </div>
     </>)
   }else{
-    console.log(chapters)
+   
   }
   const chapterELements = chapters.map((e:any, i: number) => <Chapter {...e} key={i} />)
   const firstChapter = [...chapters].sort((a, b)=> a.number - b.number)[0]
-  console.log(firstChapter)
+
   const firstChapterTitle = `الفصل ${firstChapter.number}`
   const lastChapterTitle = `الفصل ${lastChapter.number}`
   return (

@@ -1,6 +1,6 @@
 import genre from "../types/genre"
-export default function Genres({data} : {data : Array<genre>}){
-    const genresElements = data.map((e: genre, i: number) => <Genre key={i} {...e} />)
+export default function Genres({data} : {data : Array<{URL: string, text: string}>}){
+    const genresElements = data.map((e: {URL: string, text: string}, i: number) => <Genre key={i} {...e} />)
     return (
     <div className="home-genres">
      <span className="genre-listx">
@@ -13,7 +13,7 @@ export default function Genres({data} : {data : Array<genre>}){
     )
 }
 
-function Genre({URL, text}: genre){
+function Genre({URL, text}: {URL: string, text: string}){
     return(
       <a
         href={URL}

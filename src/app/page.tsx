@@ -6,7 +6,7 @@ import Slider from './components/Slider';
 import Genres from './components/genres';
 import SeriesData from './types/seriesData';
 import genre from './types/genre';
-import { supabase } from '../../lib/supabase';
+
 async function getBanners(n: number){
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/baners', {
     next:{
@@ -55,7 +55,6 @@ async function getLatesAddedSeriesData(n: number){
 }
 async function getPopularSeriesData(n: number) : Promise<Array<any>>{
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?is_popular=is.true', {
-    cache:'reload',
     next:{
       revalidate: 10
     },

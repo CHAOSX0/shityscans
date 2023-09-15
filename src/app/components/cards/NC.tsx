@@ -1,14 +1,13 @@
 import Link from "next/link";
 import SeriesData from "../../types/seriesData";
 export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at,URL }: SeriesData){
-
     const cover: string = coverURL;
     const width: number = coverWidth;
     const height: number = coverHeight;
     const chapterNumber: number = latestChaptersMeta.list[latestChaptersMeta.list.length - 1].number;
     const chapterTitle: string = `الفصل ${chapterNumber}`;
-    const publishDate: Date = new Date(created_at)
-    
+    const publishDate: Date = new Date(created_at);
+
     return(
         <div className="bs styletere">
         <div className="bsx">
@@ -85,6 +84,7 @@ const prefixes:any={
     }
 
 }
+
 if(number == 1){
     
     return `قبل ${prefixes[div.toString()].one}`

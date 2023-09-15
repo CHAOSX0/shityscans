@@ -1,16 +1,111 @@
 import Nav from "@/components/nav"
+import chapter from "@/app/types/chapter";
+import SeriesData from "@/app/types/seriesData";
+async function getData(id: string, S: number = 0) {
+ 
+    const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?id=eq.${id}`
+    const res = await fetch(url, {
+      next:{
+        revalidate: S
+      },
+      headers:{
+        'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+      }
+    });
+    if (!res.ok) {
+     // console.log(await res.json());
+      // This will activate the closest `error.js` Error Boundary
+      throw 'fuck';
+      return;
+    }
+    const result = await res.json()
+   
+    return result
+}
+async function getPreviousChapter(number: number,series: string, S:number = 0){
+  const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?number=lt.${number}&series=eq.${series}&select=URL&order=number.desc`, {
+    next:{
+      revalidate: S
+    },
+    headers:{
+      'Range-Unit': 'items',
+      'Range': `0-0`,
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+   // console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+  if(!result.length){
+    return [{URL: `/series/${series}`}]
+  }
+ // console.log(result)
+  return result
+}
+async function getNextChapter(number: number,series: string, S:number = 0){
+  const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?number=gt.${number}&series=eq.${series}&select=URL&order=number`, {
+    next:{
+      revalidate: S
+    },
+    headers:{
+      'Range-Unit': 'items',
+      'Range': `0-0`,
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+ // console.log(result)
+ if(!result.length){
+  return [{URL: `/series/${series}`}]
+ }
+ console.log(result)
+  return result
+}
+async function getParentData(seriesID: string, S: number = 0){
+  const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
+    next:{
+      revalidate: S
+    },
+    headers:{
+      'apikey':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U',
+      'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJhdGhxaHVmZGVqamVoa2R4ZnV5Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTY5MDgwOTg4MiwiZXhwIjoyMDA2Mzg1ODgyfQ.p0TWH7ENfc8r1cgE1pQj2n380KaF1_5JSVlod1V645U'
+    }
+  });
+  if (!res.ok) {
+    console.log(await res.json());
+    // This will activate the closest `error.js` Error Boundary
+    throw 'fuck';
+    return;
+  }
+  const result = await res.json()
+ // console.log(result)
+  return result
+}
 
-export default function Chapter ({ params }: { params: { slug: string } }) {
-    const images = [
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/01.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/02.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/03.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/04.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/05.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/06.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/07.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/08.jpg'},
-     {URL: 'https://aresnov.org/wp-content/uploads/data/142903/09.jpg'}]
+export default async function Chapter ({ params }: { params: { chapterID: string } }) {
+  const [{number, pages, URL, series}] : [chapter] = await getData(params.chapterID, 60*60*24)
+  const [{title, coverURL, URL: seriesURL }] : [SeriesData] = await getParentData(series, 60*60*24)
+  const [{URL: nextURL}]: [chapter] = await getNextChapter(number, series, 60)
+  const [{URL: prevURL}]: [chapter] = await getPreviousChapter(number, series, 60*60*24)
+  console.log(nextURL)
+  console.log(prevURL)
+    const images = pages.map((e: string) =>{
+      return {URL: e}
+    })
+  
     const pagesELements = images.map((e: {URL: string}, i: number)=> <Page {...e} key={i}/>)
     return (
         <div className="mainholder rtl">
@@ -27,12 +122,12 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
           >
             <div className="headpost">
               <h1 className="entry-title" itemProp="name">
-                Villain is Here – Chapter 95
+                {title} – Chapter {number}
               </h1>
               <div className="allc">
                 All chapters are in{" "}
-                <a href="https://aresnov.org/series/villain-is-here/">
-                  Villain is Here
+                <a href={seriesURL}>
+                  {title}
                 </a>
               </div>
             </div>
@@ -43,9 +138,9 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                   itemScope
                   itemType="http://schema.org/ListItem"
                 >
-                  <a itemProp="item" href="https://aresnov.org/">
+                  <a itemProp="item" href="/">
                     <span itemProp="name">
-                      مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية
+                      مانجا Scanly | أفضل موقع للمانهوا والمانجا العربية
                     </span>
                   </a>
                   <meta itemProp="position" />
@@ -58,9 +153,9 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                 >
                   <a
                     itemProp="item"
-                    href="https://aresnov.org/series/villain-is-here/"
+                    href={seriesURL}
                   >
-                    <span itemProp="name">Villain is Here</span>
+                    <span itemProp="name">{title}</span>
                   </a>
                   <meta itemProp="position" />
                 </li>
@@ -72,29 +167,29 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                 >
                   <a
                     itemProp="item"
-                    href="https://aresnov.org/villain-is-here-chapter-95/"
+                    href={URL}
                   >
-                    <span itemProp="name">Villain is Here – Chapter 95</span>
+                    <span itemProp="name">{title} – Chapter {number}</span>
                   </a>
                   <meta itemProp="position" />
                 </li>
               </ol>
             </div>
             <div className="ts-breadcrumb bixbox">
-              مانجا <strong>Villain is Here – Chapter 95</strong>, مانجا{" "}
-              <strong>Villain is Here – Chapter 95</strong> مترجمة, read{" "}
-              <strong>Villain is Here – Chapter 95</strong>,{" "}
-              <strong>Villain is Here – Chapter 95</strong> english,{" "}
-              <strong>Villain is Here – Chapter 95</strong> eng, download{" "}
-              <strong>Villain is Here – Chapter 95</strong> eng, read{" "}
-              <strong>Villain is Here – Chapter 95</strong> online, قراءة{" "}
-              <strong>Villain is Here – Chapter 95</strong>,{" "}
-              <strong>Villain is Here – Chapter 95</strong> مترجم,{" "}
-              <strong>Villain is Here – Chapter 95</strong> بالعربية ,تنزيل{" "}
-              <strong>Villain is Here – Chapter 95</strong> مترجم ,قراءة{" "}
-              <strong>Villain is Here – Chapter 95</strong> مجانا,{" "}
-              <strong>Villain is Here – Chapter 95</strong> مانجا لايك,{" "}
-              <strong>Villain is Here – Chapter 95</strong> motarjam
+              مانجا <strong>{title} – Chapter {number}</strong>, مانجا{" "}
+              <strong>{title} – Chapter {number}</strong> مترجمة, read{" "}
+              <strong>{title} – Chapter {number}</strong>,{" "}
+              <strong>{title} – Chapter {number}</strong> english,{" "}
+              <strong>{title} – Chapter {number}</strong> eng, download{" "}
+              <strong>{title} – Chapter {number}</strong> eng, read{" "}
+              <strong>{title} – Chapter {number}</strong> online, قراءة{" "}
+              <strong>{title} – Chapter {number}</strong>,{" "}
+              <strong>{title} – Chapter {number}</strong> مترجم,{" "}
+              <strong>{title} – Chapter {number}</strong> بالعربية ,تنزيل{" "}
+              <strong>{title} – Chapter {number}</strong> مترجم ,قراءة{" "}
+              <strong>{title} – Chapter {number}</strong> مجانا,{" "}
+              <strong>{title} – Chapter {number}</strong> مانجا لايك,{" "}
+              <strong>{title} – Chapter {number}</strong> motarjam
             </div>
             <div
               className="entry-content entry-content-single maincontent"
@@ -102,10 +197,10 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
             >
               <div className="chdesc">
                 <p>
-                  مانجا <b> Villain is Here – Chapter 95 </b> ,
-                  <b> مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية </b>
-                  . مانجا <b> Villain is Here </b> مترجمة على{" "}
-                  <b> مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية </b>
+                  مانجا <b> {title} – Chapter {number} </b> ,
+                  <b> مانجا Scanly| أفضل موقع للمانهوا والمانجا العربية </b>
+                  . مانجا <b> {title} </b> مترجمة على{" "}
+                  <b> مانجا Scanly| أفضل موقع للمانهوا والمانجا العربية </b>
                   .{" "}
                 </p>
               </div>
@@ -132,14 +227,14 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                     <div className="nextprev">
                       <a
                         className="ch-prev-btn"
-                        href="https://aresnov.org/villain-is-here-chapter-94/"
+                        href={prevURL}
                         rel="prev"
                       >
                         <i className="fas fa-angle-left" /> السابق{" "}
                       </a>
                       <a
                         className="ch-next-btn disabled"
-                        href="#/next/"
+                        href={nextURL}
                         rel="next"
                       >
                         التالي <i className="fas fa-angle-right" />
@@ -206,14 +301,14 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                       </option>
                       <option
                         data-id={142903}
-                        value="https://aresnov.org/villain-is-here-chapter-95/"
+                        value={URL}
                         selected
                       >
                         Chapter 95
                       </option>
                       <option
                         data-id={138342}
-                        value="https://aresnov.org/villain-is-here-chapter-94/"
+                        value={URL}
                       >
                         Chapter 94
                       </option>
@@ -743,12 +838,12 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
             </div>
             <div className="chaptertags">
               <p>
-                Tags: مانجا Villain is Here – Chapter 95, كوميك Villain is Here
-                – Chapter 95, قراءة Villain is Here – Chapter 95 اونلاين,
-                Villain is Here – Chapter 95 الفصل, Villain is Here – Chapter 95
-                الفصل, Villain is Here – Chapter 95 جودة عالية, Villain is Here
-                – Chapter 95 مترجم, ترجمةVillain is Here – Chapter 95,مانجا
-                Villain is Here – Chapter 95,
+                Tags: مانجا {title} – Chapter{number}, كوميك {title}
+                – Chapter{number}, قراءة {title} – Chapter {number} اونلاين,
+                {title} – Chapter {number} الفصل, {title} – Chapter {number}
+                الفصل, {title} – Chapter {number} جودة عالية, {title}
+                – Chapter {number} مترجم, ترجمة{title} – Chapter {number},مانجا
+                {title} – Chapter {number},
                 <time
                   className="entry-date"
                   dateTime="2023-07-31CEST02:52:21+0200"
@@ -757,7 +852,7 @@ export default function Chapter ({ params }: { params: { slug: string } }) {
                 >
                   31/07/2023
                 </time>
-                , <span itemProp="author">HOUSSINE</span>
+                , <span itemProp="author">Scanly</span>
               </p>
             </div>
           </article>

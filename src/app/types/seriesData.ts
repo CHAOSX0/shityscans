@@ -1,3 +1,5 @@
+import genre from "./genre"
+
 type SeriesData = {
      id: string,
      created_at: string,
@@ -7,7 +9,7 @@ type SeriesData = {
      coverHeight: number,
      rating: number,
      status:string,
-     genres: Array<string>,
+     genres: Array<genre>,
      latestChaptersMeta:{
         list:Array<{
             number: number,

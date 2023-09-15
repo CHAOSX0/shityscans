@@ -1,3 +1,3 @@
-type genre = {URL: string, text: string}
+type genre = string
 
 export default genre
