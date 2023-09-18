@@ -35,11 +35,7 @@ export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}
           href="https://aresmanga.org/"
           className="logosA text-white no-underline"
         >
-          <img
-            src="https://aresmanga.org/wp-content/uploads/2022/12/ares-logo-blank.png"
-            alt="مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية - افضل موقع للمانجا المترجمة يضم مكتبة هائلة من المانجا المترجمة يمتاز بسرعة ترجمة الفصول الجديدة."
-            className="block align-middle max-w-full h-auto"
-          />
+          {/*image here*/}
           <span className="hdl">
             مانجا ARESManga | أفضل موقع للمانهوا والمانجا العربية
           </span>
