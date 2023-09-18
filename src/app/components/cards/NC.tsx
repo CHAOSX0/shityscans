@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SeriesData from "../../types/seriesData";
+import Image from 'next/image'
 export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at,URL }: SeriesData){
     const cover: string = coverURL;
     const width: number = coverWidth;
@@ -9,7 +10,7 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
     const publishDate: Date = new Date(created_at);
 
     return(
-        <div className="bs styletere">
+        <div className="bs styletere" style={{maxWidth:'150px'}}>
         <div className="bsx">
           <Link
             href={URL}
@@ -21,14 +22,15 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
               <span className="hotx">
                 <i className="fab fa-hotjar" />
               </span>{" "}
-              <img
+              <Image
                 src={cover}
                 className="ts-post-image wp-post-image attachment-medium size-medium"
                 loading="lazy"
                 title={title}
                 alt={title}
-                width={width}
-                height={height}
+               fill
+               
+              
               />{" "}
             </div>
             <div className="bigor">

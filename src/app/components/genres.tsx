@@ -2,7 +2,7 @@ import genre from "../types/genre"
 export default function Genres({data} : {data : Array<{URL: string, text: string}>}){
     const genresElements = data.map((e: {URL: string, text: string}, i: number) => <Genre key={i} {...e} />)
     return (
-    <div className="home-genres">
+    <div className="home-genres" style={{marginTop: '5px'}}>
      <span className="genre-listx">
       {genresElements}
      </span>

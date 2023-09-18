@@ -9,6 +9,7 @@ type SeriesData = {
      coverHeight: number,
      rating: number,
      status:string,
+     type: "Manhua" | "Manga" | "manha"
      genres: Array<genre>,
      latestChaptersMeta:{
         list:Array<{

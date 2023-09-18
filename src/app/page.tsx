@@ -5,8 +5,15 @@ import Nav from '@/components/nav';
 import Slider from './components/Slider';
 import Genres from './components/genres';
 import SeriesData from './types/seriesData';
-import genre from './types/genre';
-
+import { Metadata } from 'next/types';
+export const metadata: Metadata = {
+  
+  title: 'سكانلي مانجا Scanly',
+  description:'موقع سكانلي مانجا وافضل موقع مانجا و مانها و مانهوا عربي ',
+  openGraph: {
+    title: 'سكانلي مانجا Scanly',
+  },
+}
 async function getBanners(n: number){
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/baners', {
     next:{
@@ -162,7 +169,7 @@ export default async function Home() {
           </div>
         </div>
       </div>
-      <div className="float-right w-8/12"> 
+      <div className="float-right w-8/12" style={{width: '100%', maxWidth: '750px'}}> 
         <div className="text-center relative overflow-hidden">
         </div>
         <br />
@@ -173,7 +180,7 @@ export default async function Home() {
               جميــع الأعمال
             </a>
           </div>
-          <div className="p-2 overflow-hidden">
+          <div className="p-2 overflow-hidden" style={{display: 'flex',flexWrap: 'wrap',rowGap: '20px',justifyContent: 'space-between'}}>
             {latestSeries}
           </div>
         </div>
@@ -181,7 +188,7 @@ export default async function Home() {
           <div className="releases relative flex justify-between items-baseline">
             <h2>مضاف حديثا</h2>
           </div>
-          <div className="p-2 overflow-hidden">
+          <div className="p-2 overflow-hidden" style={{display: 'flex',flexWrap: 'wrap',rowGap: '20px',justifyContent: 'space-between'}}>
             {latestAdedSeries}
           </div>
         </div>{" "}

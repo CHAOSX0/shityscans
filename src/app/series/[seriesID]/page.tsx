@@ -2,6 +2,8 @@ import Nav from "@/components/nav"
 import SeriesData from "@/app/types/seriesData";
 import Link from "next/dist/client/link";
 import genre from "@/app/types/genre";
+import  Image  from "next/image";
+import Bookmark from "@/app/components/bookmark";
 async function getData(seriesID: string){
   const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
     next:{
@@ -65,10 +67,12 @@ async function getDetails(id: string, S=60*60*12) {
   //console.log(result)
   return result
 }
+
+
 export default async function Page({ params }: { params: { seriesID: string } }) {
     const chapters = await getChapters(params.seriesID, 100)
     const [d]  = await getData(params.seriesID);
-    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, genres:  genresData}: SeriesData = d;
+    const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, genres:  genresData, id, URL: url}: SeriesData = d;
     const genres = genresData.map((e: genre, i)=><Genre URL={`/genre/${e}`} text={e} key={i} />)
     const {details}: {details: string} = d
     const [d2] = await getDetails(details)
@@ -78,14 +82,13 @@ export default async function Page({ params }: { params: { seriesID: string } })
      <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text: 'أعمالنا', URL: '/serieslist'}, {text:'المفضلة', URL: '/favorite'}]}/>
      <div id="content" className="manga-info mangastyle">
   <div className="wrapper">
-    <div className="bigcover">
-      <div
-        className="bigbanner"
-        style={{
-          backgroundImage:
-            `url("${coverURL}")`
-        }}
-      />
+    <div className="bigcover" style={{display: 'flex', justifyContent: 'center', alignItems:'center'}}>
+      <Image
+      src={coverURL}
+      alt="baner"
+      fill
+      objectFit="cover"
+       />
     </div>
     <div className="postbody full">
       <article
@@ -95,7 +98,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
       >
         <div className="main-info">
           <div className="info-left">
-           <CoverInfo status="OnGoing" type="Manhua" coverURL={coverURL} title={title} created_at={created_at}/>
+           <CoverInfo status="OnGoing" type="Manhua" coverURL={coverURL} title={title} created_at={created_at} URL={`${url}`} latestChaptersMeta={latestChaptersMeta} id={id} coverHeight={0} coverWidth={0} rating={0} genres={[]} details=""/>
           </div>
           <div className="info-right">
             <div className="info-desc bixbox">
@@ -175,349 +178,6 @@ export default async function Page({ params }: { params: { seriesID: string } })
             </div>
           </div>
         </div>
-        {/*
-        <div className="bixbox">
-          <div className="releases">
-            <h2>
-              <span>أعمال ذات صلة</span>
-            </h2>
-          </div>
-          <div className="listupd">
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/the-blade-of-evolution/"
-                  title="The Blade of Evolution"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="status Completed">Completed</span>{" "}
-                    <span className="type Manhua" />
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2022/12/The-Blade-of-Evolution.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="The Blade of Evolution"
-                      alt="The Blade of Evolution"
-                      width={500}
-                      height={666}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">The Blade of Evolution </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 75</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "80%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">8.0</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/47455-omnipotent-warrior/"
-                  title="Omnipotent Warrior"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="type Manhua" />
-                    <span className="hotx">
-                      <i className="fab fa-hotjar" />
-                    </span>{" "}
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2023/06/Omnipotent-Warrior-1.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="Omnipotent Warrior"
-                      alt="Omnipotent Warrior"
-                      width={550}
-                      height={791}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">Omnipotent Warrior </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 12</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "74%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">7.4</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/beholder-of-the-abyss/"
-                  title="Beholder of The Abyss"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="status Completed">Completed</span>{" "}
-                    <span className="type Manhua" />
-                    <span className="hotx">
-                      <i className="fab fa-hotjar" />
-                    </span>{" "}
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2023/02/Beholder-of-The-Abyss.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="Beholder of The Abyss"
-                      alt="Beholder of The Abyss"
-                      width={500}
-                      height={666}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">Beholder of The Abyss </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 44</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "100%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">10</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/i-who-saw-the-blood-bar-punish-the-gods/"
-                  title="I Who Saw The Blood Bar, Punish The Gods!"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="type Manhua" />
-                    <span className="hotx">
-                      <i className="fab fa-hotjar" />
-                    </span>{" "}
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2023/08/I-Who-Saw-The-Blood-Bar-Punish-The-Gods-1.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="I Who Saw The Blood Bar, Punish The Gods!"
-                      alt="I Who Saw The Blood Bar, Punish The Gods!"
-                      width={500}
-                      height={650}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">
-                      I Who Saw The Blood Bar, Punish The Gods!{" "}
-                    </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 60</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "80%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">8</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/heavens-devourer/"
-                  title="Heaven’s Devourer"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="status Completed">Completed</span>{" "}
-                    <span className="type Manhua" />
-                    <span className="hotx">
-                      <i className="fab fa-hotjar" />
-                    </span>{" "}
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2023/02/thumb.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="Heaven’s Devourer"
-                      alt="Heaven’s Devourer"
-                      width={810}
-                      height={1074}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">Heaven’s Devourer </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 16</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "86%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">8.6</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/disaster-class-necromancer/"
-                  title="Disaster Class Necromancer"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="type Manhua" />
-                    <span className="hotx">
-                      <i className="fab fa-hotjar" />
-                    </span>{" "}
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2023/06/Disaster-Class-Necromancer.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="Disaster Class Necromancer"
-                      alt="Disaster Class Necromancer"
-                      width={550}
-                      height={729}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">Disaster Class Necromancer </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 10</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "90%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">9.0</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-            <div className="bs">
-              <div className="bsx">
-                <a
-                  href="https://aresnov.org/series/94903-plundering-the-heavens/"
-                  title="Plundering The Heavens"
-                >
-                  <div className="limit">
-                    <div className="ply" />
-                    <span className="type Manhua" />
-                    <img
-                      src="https://aresnov.org/wp-content/uploads/2022/12/Plundering-The-Heavens.webp"
-                      className="ts-post-image wp-post-image attachment-medium size-medium"
-                      loading="lazy"
-                      title="Plundering The Heavens"
-                      alt="Plundering The Heavens"
-                      width={500}
-                      height={666}
-                    />{" "}
-                  </div>
-                  <div className="bigor">
-                    <div className="tt">Plundering The Heavens </div>
-                    <div className="adds">
-                      <div className="epxs">الفصل 86</div>
-                      <div className="rt">
-                        <div className="rating">
-                          <div className="rating-prc">
-                            <div className="rtp">
-                              <div className="rtb">
-                                <span style={{ width: "83%" }} />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="numscore">8.3</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>{" "}
-          </div>
-        </div>
-       
-        <div id="comments" className="bixbox comments-area">
-          <div className="releases">
-            <h2>
-              <span>تعليق</span>
-            </h2>
-          </div>
-          <div className="cmt commentx">
-            <div id="disqus_thread">
-              <iframe
-                id="dsq-app2238"
-                name="dsq-app2238"
-                allowTransparency="true"
-                frameBorder={0}
-                scrolling="no"
-                tabIndex={0}
-                title="Disqus"
-                width="100%"
-                src="https://disqus.com/embed/comments/?base=default&f=aresmanga-net&t_i=112%20https%3A%2F%2Faresmanga.net%2F%3Fpost_type%3Dmanga%26p%3D112&t_u=https%3A%2F%2Faresnov.org%2Fseries%2Fvillain-is-here%2F&t_e=Villain%20is%20Here&t_d=%D9%85%D8%A7%D9%86%D8%AC%D8%A7%20Villain%20is%20Here%20-%20%D9%85%D8%A7%D9%86%D8%AC%D8%A7%20ARESManga%20%7C%20%D8%A3%D9%81%D8%B6%D9%84%20%D9%85%D9%88%D9%82%D8%B9%20%D9%84%D9%84%D9%85%D8%A7%D9%86%D9%87%D9%88%D8%A7%20%D9%88%D8%A7%D9%84%D9%85%D8%A7%D9%86%D8%AC%D8%A7%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9&t_t=Villain%20is%20Here&s_o=default#version=d3a7e0f9d834ec1287136e3d51e7ef82"
-                style={{
-                  width: "1px !important",
-                  minWidth: "100% !important",
-                  border: "none !important",
-                  overflow: "hidden !important",
-                  height: "614px !important"
-                }}
-                horizontalscrolling="no"
-                verticalscrolling="no"
-              />
-            </div>
-          </div>
-        </div>
-         */}
         <span
           style={{ display: "none" }}
           itemProp="publisher"
@@ -623,28 +283,28 @@ function Genre({URL, text}: {URL: string, text: string}){
     )
 
 }
-function CoverInfo({coverURL, title, type, created_at, status}: {coverURL: string, title: string, created_at: string, type: string, status: string}){
+function CoverInfo({coverURL, title, type, created_at, status, latestChaptersMeta, id, URL} : SeriesData){
     const creationDateString: string = toDate(created_at)
 return(
     <div className="info-left-margin">
     <div
       className="thumb"
       itemProp="image"
+      style={{aspectRatio: 1/1.41}}
       itemType="https://schema.org/ImageObject"
     >
-      <img
+      <Image
         src={coverURL}
         className="attachment- size- wp-post-image"
         alt={title}
         decoding="async"
         title={title}
         itemProp="image"
+        fill
       />{" "}
     </div>
     <div id="mobiletitle" />
-    <div data-id={112} className="bookmark">
-      <i className="far fa-bookmark" aria-hidden="true" /> Bookmark
-    </div>
+    <Bookmark coverURL={coverURL} URL={`${URL}`} lastChapter={{number: latestChaptersMeta.list[0].number, URL: latestChaptersMeta.list[0].URL}} title={title} id={id} />
   
     <div className="rating bixbox">
       <div
@@ -680,7 +340,7 @@ return(
             itemProp="datePublished"
             dateTime={created_at}
           >
-            ديسمبر 24, 2022
+            {new Date(created_at).toLocaleDateString()}
           </time>
         </i>
       </div>

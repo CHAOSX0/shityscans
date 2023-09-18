@@ -1,4 +1,5 @@
 import SeriesData from '@/app/types/seriesData';
+import Image from 'next/image'
 import Link from 'next/link'
 
 export default function LCard({title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, URL}: SeriesData){
@@ -10,7 +11,7 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
     console.log(latestChaptersMeta.list)
     const chapters = latestChaptersMeta.list.map((e: any, i: number)=><Chapter key={i} {...e}/>)
     return(
-        <div className="bs styletere stylefiv" dir="rtl">
+        <div className="bs styletere stylefiv" dir="rtl" style={{maxWidth:'150px'}}>
               <div className="bsx">
                 <Link
                   href={URL}
@@ -19,14 +20,14 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
                   <div className="limit">
                     <div className="ply" />
                     <span className={`type ${type}`} />
-                    <img
+                    <Image
                       src={cover}
                       className="ts-post-image wp-post-image attachment-medium size-medium"
                       loading="lazy"
                       title={title}
                       alt={title}
-                      width={width}
-                      height={height}
+                      
+                      fill
                     />
                   </div>
                 </Link>

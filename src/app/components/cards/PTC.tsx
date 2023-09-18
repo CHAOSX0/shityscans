@@ -1,5 +1,6 @@
 import SeriesData from "../../types/seriesData";
 import Link from 'next/link'
+import Image from 'next/image'
 export default function PTCCard({title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, URL} : SeriesData){
     const link: string = URL;
     const cover: string = coverURL
@@ -8,7 +9,7 @@ export default function PTCCard({title, coverURL, created_at, coverHeight, cover
     
 
 return(
-    <div className="bs">
+    <div className="bs" style={{minWidth: '100px', display: 'block !important', maxWidth:'150px'}}>
     <div className="bsx">
       <Link
         href={link}
@@ -20,14 +21,14 @@ return(
           <span className="hotx">
             <i className="fab fa-hotjar" />
           </span>{" "}
-          <img
+          <Image
             src={cover}
             className="ts-post-image wp-post-image attachment-medium size-medium"
             loading="lazy"
             title={title}
             alt={title}
-            width={coverWidth}
-            height={coverHeight}
+            fill
+          
           />{" "}
         </div>
         <div className="bigor">

@@ -66,7 +66,7 @@ return (
                   <div
                     className="bigbanner relative flex justify-center h-full"
                   />
-                  <Image priority unoptimized src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
+                  <Image priority src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
                 </div>
               </div>
             </Link>
