@@ -1,0 +1,95 @@
+:root {
+
+    --size: 5rem;
+    --offset: 25px;
+    --background: #16151d;
+    --radius: 100px;
+    --tracksize: 1rem;
+    --degrees: 0deg;
+  }
+  
+  body {
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--background);
+  }
+  
+  article {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+ 
+  .spinner-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .container {
+    width: var(--size);
+    border-radius: var(--radius);
+    aspect-ratio: 1;
+    position: relative;
+  }
+
+
+  .comet-spinner {
+    
+    width: calc(var(--radius) * 2 + var(--tracksize));
+    aspect-ratio: 1;
+    border-radius: 50%;
+    padding: var(--tracksize);
+    background: conic-gradient(from var(--degrees), #1BB8F7, #F8509C calc(var(--degrees) + 140deg), transparent calc(var(--degrees) + 210deg));
+    position: relative;
+    display: grid;
+    place-items: center;
+    animation: comet linear 1000ms infinite;
+  }
+    .inner-circle {
+      width: calc(var(--radius) * 2 + var(--tracksize));
+      background-color: var(--background);
+      position: absolute;
+      aspect-ratio: 1;
+      border-radius: 50%;
+    }
+    
+    .comet {
+      width: var(--tracksize);
+      height: var(--tracksize);
+      background-color: #1BB8F7;
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid #FFDC55;
+      z-index: 3;
+      left: calc((var(--tracksize) / 2));
+      top: 0;
+      margin: -2px;
+      translate: calc(cos(var(--degrees)) * var(--radius))
+                 calc(sin(var(--degrees)) * var(--radius));
+    }
+  
+  
+  
+  
+  @keyframes animate-in {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes comet {
+    from {
+      transform: rotate(0deg)
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  
+  
