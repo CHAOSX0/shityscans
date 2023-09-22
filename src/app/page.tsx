@@ -154,7 +154,7 @@ export default async function Home() {
   return (
     <>
     <div className='relative'>
-     <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text: 'أعمالنا', URL: '/serieslist'}, {text:'المفضلة', URL: '/favorite'}]}/>
+     <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text:'المفضلة', URL: '/favorite'}]}/>
      <Slider pages={tempSliderData} />
      <Genres data={genres}/>
   <div id="content" className='overflow-hidden max-w-screen-xl mt-9 relative pb-72 mx-auto mb-0'>
