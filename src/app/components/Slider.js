@@ -16,7 +16,7 @@ export default function Slider({pages}){
   const swiperElRef = useRef(null);
   
   
-    const pagesELements = pages.map((e, i) => <SliderPage key={i} {...e} />)
+    const pagesELements = pages.map((e, i) => <SliderPage key={i} {...e} i={i}/>)
     useEffect(() => {
       // listen for Swiper events using addEventListener
       swiperElRef?.current.addEventListener('progress', (e) => {
@@ -37,7 +37,7 @@ export default function Slider({pages}){
     )
 }
 
-function SliderPage({title, Description, genres, coverURL, URL, classification}){
+function SliderPage({title, Description, genres, coverURL, URL, classification, i}){
 return (
         <SwiperSlide>
             <Link href={URL}>
@@ -66,7 +66,7 @@ return (
                   <div
                     className="bigbanner relative flex justify-center h-full"
                   />
-                  <Image priority src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
+                  <Image priority={i==0} src={coverURL} fill style={{objectFit:'cover'}} alt={title}/>
                 </div>
               </div>
             </Link>

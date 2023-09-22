@@ -22,7 +22,7 @@ export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}
     
     return (
         <div className="th">
-<div className="centernav bound">
+<div className="centernav bound" style={{flexDirection:'row-reverse', alignItems: 'center'}}>
   <div className="hidden">
     <i className="fa fa-bars font-black inline-block not-italic leading-none" aria-hidden="true" />
   </div>
@@ -47,12 +47,12 @@ export default function Nav({Items}: {Items: Array<{text: string, URL: string}>}
       />
     </div>
   </header>
-  <nav id="main-menu" className="mm float-right">
+  <nav id="main-menu" className="mm float-right" style={{display: 'block !important', position: 'static', backgroundColor: 'transparent', float: 'right' }}>
     <span
       itemType="http://schema.org/SiteNavigationElement"
       role="navigation"
     >
-      <ul id="menu-menu" className="menu relative float-left p-0 m-0">
+      <ul id="menu-menu" className="menu relative float-left p-0 m-0" style={{float: 'left', display:'flex'}}>
         {navELements}
       </ul>{" "}
     </span>

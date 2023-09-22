@@ -1,7 +1,11 @@
-"use client"
+'use client'
 
-type series = {title: string, lastChapter: {number: number, URL: string}, URL: string, coverURL: string, id: string}
+import { useEffect, useState } from "react"
+import React from "react"
+
+type series = {title: string, lastChapter: {number: number, URL: string}, URL: string, coverURL: string, id: string, created_at: string}
 export default function Bookmark(data: series){
+    const [isClicked, setIsClicked] = useState(false)
     function getStorage(): Array<series> | undefined{
         const rawData: string | null = localStorage.getItem('bookmarks')
         if(rawData){
@@ -47,17 +51,28 @@ export default function Bookmark(data: series){
         console.log(series)
         localStorage.setItem('bookmarks', JSON.stringify(data))
     }
-    function bookmark(series: series){
+    function bookmark(series: series, setIsClicked: any){
        if(getSeries(series.id)){
          console.log('already clicked')
          removeSeries(series.id)
+         setIsClicked(false)
        }else{
         console.log('not already clicked')
         addSeries(series)
+        setIsClicked(true)
        }
     }
+    useEffect(()=>{
+        const series = getSeries(data.id)
+        if(series){
+         setIsClicked(true)
+        }
+    }, [])
+    const color = isClicked ? '#2f2f2f' : '#01d9b9'
+    console.log('rerendeer')
+    console.log(color)
 return (
-    <div data-id={112} className="bookmark" onClick={()=>{bookmark(data)}}>
+    <div style={{backgroundColor:  color}} data-id={JSON.stringify(isClicked)}  className="bookmark" onClick={(e)=>{bookmark(data, setIsClicked)}}>
       <i className="far fa-bookmark" aria-hidden="true" /> Bookmark
     </div>
 )

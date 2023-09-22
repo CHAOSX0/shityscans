@@ -3,9 +3,9 @@ import SeriesData from "../../types/seriesData";
 import Image from 'next/image'
 export default function NC({title, coverURL, coverWidth, coverHeight, latestChaptersMeta, created_at,URL }: SeriesData){
     const cover: string = coverURL;
-    const width: number = coverWidth;
-    const height: number = coverHeight;
-    const chapterNumber: number = latestChaptersMeta.list[latestChaptersMeta.list.length - 1].number;
+    const width: number = coverWidth || 0;
+    const height: number = coverHeight || 0;
+    const chapterNumber: number = latestChaptersMeta.list[latestChaptersMeta.list.length - 1]?.number;
     const chapterTitle: string = `الفصل ${chapterNumber}`;
     const publishDate: Date = new Date(created_at);
 
@@ -19,9 +19,7 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
             <div className="limit">
               <div className="ply" />
               <span className="type Manhua" />
-              <span className="hotx">
-                <i className="fab fa-hotjar" />
-              </span>{" "}
+              
               <Image
                 src={cover}
                 className="ts-post-image wp-post-image attachment-medium size-medium"
@@ -36,8 +34,8 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
             <div className="bigor">
               <div className="tt">{title}</div>
               <div className="adds">
-                <div className="epxs">{chapterTitle}</div>
-                <div className="epxdate">{getDiff(publishDate)}</div>
+                <div className="epxs" style={{textAlign:'right'}}>{chapterTitle}</div>
+                <div className="epxdate" style={{textAlign:'right'}}>{getDiff(publishDate)}</div>
               </div>
             </div>
           </Link>

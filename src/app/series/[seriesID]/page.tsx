@@ -87,7 +87,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
       src={coverURL}
       alt="baner"
       fill
-      objectFit="cover"
+      style={{objectFit:'cover'}}
        />
     </div>
     <div className="postbody full">
@@ -304,7 +304,7 @@ return(
       />{" "}
     </div>
     <div id="mobiletitle" />
-    <Bookmark coverURL={coverURL} URL={`${URL}`} lastChapter={{number: latestChaptersMeta.list[0].number, URL: latestChaptersMeta.list[0].URL}} title={title} id={id} />
+    <Bookmark coverURL={coverURL} URL={`${URL}`} created_at={latestChaptersMeta.list[0].created_at} lastChapter={{number: latestChaptersMeta.list[0].number, URL: latestChaptersMeta.list[0].URL}} title={title} id={id} />
   
     <div className="rating bixbox">
       <div

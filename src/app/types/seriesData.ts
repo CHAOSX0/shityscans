@@ -5,10 +5,10 @@ type SeriesData = {
      created_at: string,
      title: string,
      coverURL: string,
-     coverWidth: number,
-     coverHeight: number,
-     rating: number,
-     status:string,
+     coverWidth: number | undefined,
+     coverHeight: number | undefined,
+     rating: number | undefined,
+     status:string | undefined,
      type: "Manhua" | "Manga" | "manha"
      genres: Array<genre>,
      latestChaptersMeta:{
