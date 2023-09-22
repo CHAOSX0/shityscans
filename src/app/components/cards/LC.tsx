@@ -6,8 +6,8 @@ export default function LCard({title, coverURL, created_at, coverHeight, coverWi
    
     const type: string = 'Manhua';
     const cover: string = coverURL
-    const width: number = coverHeight;
-    const height: number = coverWidth;
+    const width: number = coverHeight || 0;
+    const height: number = coverWidth || 0;
     console.log(latestChaptersMeta.list)
     const chapters = latestChaptersMeta.list.map((e: any, i: number)=><Chapter key={i} {...e}/>)
     return(
