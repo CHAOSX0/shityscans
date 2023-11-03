@@ -13,6 +13,7 @@ import '../../styles/index/post-views-counter-frontend-css.css'
 import '../../styles/index/owl-carousel-css.css'
 import '../../styles/index/custom.css';
 
+import {Toaster} from 'react-hot-toast';
 import { Changa } from 'next/font/google'
 const changa = Changa({
   weight: '400',
@@ -29,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3262360767966427" crossOrigin="anonymous"></script>
-      <body className={changa.className}>{children}</body>
+      <body className={changa.className}>{children}<Toaster /></body>
     
     </html>
   )

@@ -4,6 +4,8 @@ import Link from "next/dist/client/link";
 import genre from "@/app/types/genre";
 import  Image  from "next/image";
 import Bookmark from "@/app/components/bookmark";
+import { Metadata } from "next";
+
 async function getData(seriesID: string){
   const res = await fetch(`https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?id=eq.${seriesID}`, {
     next:{
@@ -68,7 +70,17 @@ async function getDetails(id: string, S=60*60*12) {
   return result
 }
 
-
+export async function generateMetadata({ params }: {params: {seriesID: string}}): Promise<Metadata>{
+  const [{coverURL, title, details}]: [SeriesData] = await getData(params.seriesID)
+  const [{description}] : [{description: string}] = await getDetails(details)
+  return {
+    title: `مانهوا ${title} على ساكنلي مانجا`,
+    description: description,
+    openGraph: {
+      images:[coverURL],
+    },
+  }
+}
 export default async function Page({ params }: { params: { seriesID: string } }) {
     const chapters = await getChapters(params.seriesID, 100)
     const [d]  = await getData(params.seriesID);

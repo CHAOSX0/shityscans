@@ -1,6 +1,8 @@
 import Nav from "@/components/nav"
 import chapter from "@/app/types/chapter";
 import SeriesData from "@/app/types/seriesData";
+import { Metadata } from "next";
+import Hi from './hi'
 async function getData(id: string, S: number = 0) {
  
     const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?id=eq.${id}`
@@ -94,8 +96,19 @@ async function getParentData(seriesID: string, S: number = 0){
  // console.log(result)
   return result
 }
+export async function generateMetadata({ params }: {params: {chapterID: string}}): Promise<Metadata>{
+  const [{number, series}]: [chapter] = await getData(params.chapterID, 60*60*24)
+  const [{title, coverURL }] : [SeriesData] = await getParentData(series, 60*60*24)
+  return {
+    title: `الفصل ${number} ${title} على سكانلي مانجا`,
+    openGraph: {
+      images:[coverURL],
+    },
+  }
+}
 
 export default async function Chapter ({ params }: { params: { chapterID: string } }) {
+ 
   const [{number, pages, URL, series, created_at}] : [chapter] = await getData(params.chapterID, 60*60*24)
   const [{title, coverURL, URL: seriesURL }] : [SeriesData] = await getParentData(series, 60*60*24)
   const [{URL: nextURL}]: [chapter] = await getNextChapter(number, series, 60)
@@ -109,6 +122,7 @@ export default async function Chapter ({ params }: { params: { chapterID: string
     const pagesELements = images.map((e: {URL: string}, i: number)=> <Page {...e} key={i}/>)
     return (
         <div className="mainholder rtl">
+          <Hi number={number}/>
      <Nav Items={[{text: 'الرئيسية', URL:'/'}, {text: 'أعمالنا', URL: '/serieslist'}, {text:'المفضلة', URL: '/favorite'}]}/>
   <div id="content" className="readercontent">
     <div className="wrapper">
