@@ -3,6 +3,7 @@ import chapter from "@/app/types/chapter";
 import SeriesData from "@/app/types/seriesData";
 import { Metadata } from "next";
 import Hi from './hi'
+import Link from "next/link";
 async function getData(id: string, S: number = 0) {
  
     const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?id=eq.${id}`
@@ -165,12 +166,12 @@ export default async function Chapter ({ params }: { params: { chapterID: string
                   itemScope
                   itemType="http://schema.org/ListItem"
                 >
-                  <a
+                  <Link
                     itemProp="item"
                     href={seriesURL}
                   >
                     <span itemProp="name">{title}</span>
-                  </a>
+                  </Link>
                   <meta itemProp="position" />
                 </li>
                 ›
@@ -239,20 +240,20 @@ export default async function Chapter ({ params }: { params: { chapterID: string
                   <span className="npv r">
                     {" "}
                     <div className="nextprev">
-                      <a
+                      <Link
                         className="ch-prev-btn"
                         href={prevURL}
                         rel="prev"
                       >
                         <i className="fas fa-angle-left" /> السابق{" "}
-                      </a>
-                      <a
+                      </Link>
+                      <Link
                         className="ch-next-btn disabled"
                         href={nextURL}
                         rel="next"
                       >
                         التالي <i className="fas fa-angle-right" />
-                      </a>
+                      </Link>
                     </div>
                   </span>
                   <span className="amob nodlx">
@@ -290,6 +291,25 @@ export default async function Chapter ({ params }: { params: { chapterID: string
               </div>
               
             </div>
+            <span className="npv r" style={{width:'100%', display:'flex', paddingBottom: '15px', paddingTop:'10px', justifyContent:'space-evenly'}}>
+                    {" "}
+                    <div className="nextprev">
+                      <Link
+                        className="ch-prev-btn"
+                        href={prevURL}
+                        rel="prev"
+                      >
+                        <i className="fas fa-angle-left" /> السابق{" "}
+                      </Link>
+                      <Link
+                        className="ch-next-btn disabled"
+                        href={nextURL}
+                        rel="next"
+                      >
+                        التالي <i className="fas fa-angle-right" />
+                      </Link>
+                    </div>
+                  </span>
             <div className="chaptertags">
               <p>
                 Tags: مانجا {title} – Chapter{number}, كوميك {title}
