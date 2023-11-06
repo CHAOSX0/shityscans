@@ -9,7 +9,8 @@ type SeriesData = {
      coverHeight: number | undefined,
      rating: number | undefined,
      status:string | undefined,
-     type: "Manhua" | "Manga" | "manha"
+     type: "Manhua" | "Manga" | "manha",
+     updated_at: string,
      genres: Array<genre>,
      latestChaptersMeta:{
         list:Array<{
