@@ -5,7 +5,8 @@ export default function NC({title, coverURL, coverWidth, coverHeight, latestChap
     const cover: string = coverURL;
     const width: number = coverWidth || 0;
     const height: number = coverHeight || 0;
-    const chapterNumber: number = latestChaptersMeta.list[latestChaptersMeta.list.length - 1]?.number;
+    const chapterNumber: number = latestChaptersMeta.list.reverse()[latestChaptersMeta.list.length - 1]?.number;
+    console.log(chapterNumber, 'nummmm')
     const chapterTitle: string = `الفصل ${chapterNumber}`;
     const publishDate: Date = new Date(created_at);
 
