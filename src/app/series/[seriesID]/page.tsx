@@ -28,7 +28,7 @@ async function getData(seriesID: string){
 }
 
 async function getChapters(seriesID: string, n: number, S ='0'){
-  const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?series=eq.${seriesID}&order=number.desc`
+  const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters?series=eq.${seriesID}&order=number.desc&select=created_at, number, URL`
   const res = await fetch(url, {
     cache: 'no-cache',
     headers:{
@@ -81,6 +81,7 @@ export async function generateMetadata({ params }: {params: {seriesID: string}})
 }
 export default async function Page({ params }: { params: { seriesID: string } }) {
     const chapters = await getChapters(params.seriesID, 100)
+    
     const [d]  = await getData(params.seriesID);
     const {title, coverURL, created_at, coverHeight, coverWidth, rating, latestChaptersMeta, genres:  genresData, id, URL: url}: SeriesData = d;
     const genres = genresData.map((e: genre, i)=><Genre URL={`/genre/${e}`} text={e} key={i} />)
