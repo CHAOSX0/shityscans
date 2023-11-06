@@ -53,37 +53,37 @@ console.log(s)
     const chaptersRaw = (await getAllChapters())
     const chapters: any = []
     chaptersRaw.forEach((c: any)=>{
-      chapters.push({url: `xn--mgba2gffg.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
-      chapters.push({url: `scanly.org/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
-      chapters.push({url: `xn--mgbao2hg.center/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
-      chapters.push({url: `xn--mgba2gff.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
+      chapters.push({url: `https://xn--mgba2gffg.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
+      chapters.push({url: `https://scanly.org/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
+      chapters.push({url: `https://xn--mgbao2hg.center/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
+      chapters.push({url: `https://xn--mgba2gff.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
     })
     const series:any = []
     seriesRaw.forEach((s: any)=>{  
-     series.push({url: `xn--mgba2gffg.online/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
-     series.push({url: `scanly.org/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
-     series.push({url: `xn--mgbao2hg.center/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
-     series.push({url: `xn--mgba2gff.online/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
+     series.push({url: `https://xn--mgba2gffg.online/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
+     series.push({url: `https://scanly.org/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
+     series.push({url: `https://xn--mgbao2hg.center/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
+     series.push({url: `https://xn--mgba2gff.online/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
 
     })
   return [
     {
-        url: 'xn--mgba2gff.online/',
+        url: 'https://xn--mgba2gff.online/',
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
     },{
-        url: 'scanly.org/',
+        url: 'https://scanly.org/',
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
     },{
-        url: 'xn--mgbao2hg.center/',
+        url: 'https://xn--mgbao2hg.center/',
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
     },{
-        url: 'xn--mgba2gffg.online/',
+        url: 'https://xn--mgba2gffg.online/',
         lastModified: new Date(),
         changeFrequency: 'daily',
         priority: 1,
