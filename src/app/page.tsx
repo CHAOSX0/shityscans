@@ -88,7 +88,7 @@ async function getLatestSeriesData(n: number) {
  
   //const {data, error} = await supabase.from('series').select().order('title')
 //console.log(data)
-  const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?order=updated', {
+  const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?order=updated_at', {
     next:{
       revalidate: 10*60
     },
