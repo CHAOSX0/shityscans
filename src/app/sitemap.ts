@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import SeriesData from './types/seriesData';
 import chapter from './types/chapter';
  
-async function getAllSeries(): Promise<SeriesData[]>{
+async function getAllSeries(): Promise<any>{
  
     //const {data, error} = await supabase.from('series').select().order('title')
   //console.log(data)
@@ -26,7 +26,7 @@ async function getAllSeries(): Promise<SeriesData[]>{
   
     return await res.json()
   }
- async  function getAllChapters(): Promise<chapter[]>{
+ async  function getAllChapters(): Promise<any>{
  
         const url = `https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/chapters`
         const res = await fetch(url, {
@@ -52,14 +52,14 @@ console.log(s)
     const seriesRaw = (await getAllSeries())
     const chaptersRaw = (await getAllChapters())
     const chapters: any = []
-    chaptersRaw.forEach(c=>{
+    chaptersRaw.forEach((c: any)=>{
       chapters.push({url: `xn--mgba2gffg.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
       chapters.push({url: `scanly.org/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
       chapters.push({url: `xn--mgbao2hg.center/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
       chapters.push({url: `xn--mgba2gff.online/chapter/${c.id}`,  lastModified: new Date(c.created_at), changeFrequency: "yearly", priority: 0.75  })
     })
     const series:any = []
-    seriesRaw.forEach(s=>{  
+    seriesRaw.forEach((s: any)=>{  
      series.push({url: `xn--mgba2gffg.online/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
      series.push({url: `scanly.org/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
      series.push({url: `xn--mgbao2hg.center/series/${s.id}`,  lastModified: new Date(s.updated_at || s.created_at), changeFrequency: "weekly", priority: 0.75  })
