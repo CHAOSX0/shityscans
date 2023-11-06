@@ -71,7 +71,7 @@ async function getDetails(id: string, S=60*60*12) {
 }
 
 export async function generateMetadata({ params }: {params: {seriesID: string}}): Promise<Metadata>{
-  const [{coverURL, title, details}]: [SeriesData] = await getData(params.seriesID)
+  const [{coverURL, title, details, URL}]: [SeriesData] = await getData(params.seriesID)
   const [{description}] : [{description: string}] = await getDetails(details)
   return {
     title: `مانهوا ${title} على ساكنلي مانجا`,
@@ -166,7 +166,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
                 >
                   <a
                     itemProp="item"
-                    href='#'
+                    href={`${url}`}
                   >
                     <span itemProp="name">{title}</span>
                   </a>

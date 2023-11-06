@@ -1,46 +1,21 @@
 "use client";
-import { type } from "os"
-//type slider = {title: string, Description: string, genres: string, coverURL: string, URL: string, classification: string}
-import Image from "next/image"
-//type sliderPage ={title: string, Description: string, genres: string, coverURL: string, URL: string, classification: string}
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React, { useState, DOMAttributes }  from 'react';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import { useEffect, useRef } from "react";
 import { register } from 'swiper/element/bundle';
-import Link from 'next/link'
+import Link from 'next/link';
+import Image from 'next/image';
 register();
-export default function Slider({pages}){ 
-  const swiperElRef = useRef(null);
+function SLide({coverURL, title, genres, URL, Description, i}:{coverURL: string, title: string, type: string, URL: string, i: number, Description: string, genres: string[]}): JSX.Element{
   
-  
-    const pagesELements = pages.map((e, i) => <SliderPage key={i} {...e} i={i}/>)
-    useEffect(() => {
-      // listen for Swiper events using addEventListener
-      swiperElRef?.current.addEventListener('progress', (e) => {
-        const [swiper, progress] = e.detail;
-        console.log(progress);
-      });
-  
-      swiperElRef?.current.addEventListener('slidechange', (e) => {
-        console.log('slide changed');
-      });
-    }, []);
-    return (
-      <swiper-container ref={swiperElRef} slides-per-view="1" loop="true"  autoplay-delay="2500" autoplay-disable-on-interaction="false">
-       {pagesELements}
-      </swiper-container>
-
-      
-    )
-}
-
-function SliderPage({title, Description, genres, coverURL, URL, classification, i}){
-return (
-        <SwiperSlide>
-            <Link href={URL}>
+ return(
+  <swiper-slide 
+  style={{width:'100%', display: 'block'}}
+  class="swiper-slide"
+>
+<Link href={URL}>
               <div className="mainslider" dir="rtl" >
                 <div className="limit">
                   <div className="sliderinfo">
@@ -70,6 +45,39 @@ return (
                 </div>
               </div>
             </Link>
-            </SwiperSlide>
-)
+</swiper-slide>
+ )
 }
+type CustomElement<T> = Partial<T & DOMAttributes<T> & { children: any }>;
+
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      ['swiper-container']: CustomElement<any>;
+      ['swiper-slide']: CustomElement<any>;
+    }
+  }
+}
+export default function SeriesSwiper({pages}: {pages: any}): JSX.Element{
+  
+    const sliders = pages.map((slide: any, i: number) => <SLide key={slide.title} {...slide} i={i}/>)
+  return (
+    <>
+      
+       {sliders.length && <swiper-container
+          id="home-slider"
+          slideClass="swiper-slide"
+          
+          style={{overflow: 'hidden'}}
+          slides-per-view={1}
+          centeredSlides={false}
+          loop= {true}
+        
+        >
+        
+         {sliders}
+  </swiper-container>}
+  </>
+    
+  );
+}   

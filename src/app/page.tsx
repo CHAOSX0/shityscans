@@ -38,7 +38,7 @@ async function getBanners(n: number){
 async function getLatesAddedSeriesData(n: number){
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?order=created_at', {
     next:{
-      revalidate: 10
+      revalidate: 10*60
     },
     headers:{
       'Range-Unit': 'items',
@@ -63,7 +63,7 @@ async function getLatesAddedSeriesData(n: number){
 async function getPopularSeriesData(n: number) : Promise<Array<any>>{
   const res = await fetch('https://rathqhufdejjehkdxfuy.supabase.co/rest/v1/series?is_popular=is.true', {
     next:{
-      revalidate: 10
+      revalidate: 10*60
     },
     headers:{
       'Range-Unit': 'items',
