@@ -6,6 +6,7 @@ import Slider from './components/Slider';
 import Genres from './components/genres';
 import SeriesData from './types/seriesData';
 import { Metadata } from 'next/types';
+import Footer from './components/footer';
 export const metadata: Metadata = {
   
   title: 'سكانلي مانجا Scanly',
@@ -198,77 +199,7 @@ export default async function Home() {
      
     </div>
   </div>
-  <div id="footer">
-    <footer
-      id="colophon"
-      className="site-footer mt-8 text-center leading-5 p-0 text-xs text-white absolute w-full bottom-0"
-    
-      itemType="http://schema.org/WPFooter"
-      role="contentinfo"
-    >
-      <div className="footermenu">
-        <div className="menu-footer-container">
-          <ul id="menu-footer" className="menu p-0 m-0 block overflow-hidden">
-            <li
-              id="menu-item-116"
-              className="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-116"
-            >
-              <a
-                href="https://aresmanga.org"
-                aria-current="page"
-                itemProp="url"
-              >
-                الصفحة الرئيسية
-              </a>
-            </li>
-            <li
-              id="menu-item-17953"
-              className="menu-item menu-item-type-post_type menu-item-object-page menu-item-17953"
-            >
-              <a
-                href="https://aresmanga.org/%d8%ad%d9%82%d9%88%d9%82-%d8%a7%d9%84%d8%b7%d8%a8%d8%b9-%d9%88%d8%a7%d9%84%d9%86%d8%b4%d8%b1-dmca/"
-                itemProp="url"
-              >
-                حقوق الطبع والنشر DMCA
-              </a>
-            </li>
-            <li
-              id="menu-item-17954"
-              className="menu-item menu-item-type-post_type menu-item-object-page menu-item-17954"
-            >
-              <a
-                href="https://aresmanga.org/terms-and-conditions/"
-                itemProp="url"
-              >
-                الشروط والأحكام
-              </a>
-            </li>
-            <li
-              id="menu-item-17955"
-              className="menu-item menu-item-type-post_type menu-item-object-page menu-item-17955"
-            >
-              <a href="https://aresmanga.org/privacy-policy-2/" itemProp="url">
-                سياسة الخصوصية
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>{" "}
-      <div className="footercopyright overflow-hidden relative">
-        <div className="sosmedmrgn mt-8" />{" "}
-        <div className="copyright overflow-hidden mb-8">
-          <div className="txt">
-            <p className='m-0 mt-1 mb-0 leading-4'>
-              All the comics on this website are only previews of the original
-              comics, there may be many language errors, character names, and
-              story lines. For the original version, please buy the comic if
-              it's available in your city.
-            </p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </div>
+ <Footer />
 </div>
 </>
   )
