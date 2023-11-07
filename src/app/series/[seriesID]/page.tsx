@@ -146,10 +146,11 @@ export default async function Page({ params }: { params: { seriesID: string } })
             {/* series history*/}
              <ChapterBox chapters={chapters} lastChapter={latestChaptersMeta.list[0]} title={title}/>
             <div className="ts-breadcrumb bixbox">
-              <ol itemScope itemType="http://schema.org/BreadcrumbList">
+              <ol itemScope itemType="http://schema.org/BreadcrumbList" >
                 <li
                   itemProp="itemListElement"
                   itemType="http://schema.org/ListItem"
+                  itemScope
                 >
                   <a itemProp="item" href="/">
                     <span itemProp="name">
@@ -162,6 +163,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
                 <li
                   itemProp="itemListElement"
                   itemType="http://schema.org/ListItem"
+                  itemScope
                 >
                   <a
                     itemProp="item"
