@@ -156,7 +156,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
                       مانجا Scanly |أفضل موقع للمانهوا والمانجا العربية
                     </span>
                   </a>
-                  <meta itemProp="position" />
+                  <meta itemProp="position" content="1"/>
                 </li>
                 ›
                 <li
@@ -169,7 +169,7 @@ export default async function Page({ params }: { params: { seriesID: string } })
                   >
                     <span itemProp="name">{title}</span>
                   </a>
-                  <meta itemProp="position"/>
+                  <meta itemProp="position" content="2"/>
                 </li>
               </ol>
             </div>
